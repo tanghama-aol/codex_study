@@ -1,0 +1,1205 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Codex changelog</title><description>Latest updates to Codex, OpenAI’s coding agent. Stay up to date with the latest features, bug fixes, and improvements.</description><link>https://developers.openai.com/</link><atom:link rel="self" type="application/rss+xml" href="https://developers.openai.com/codex/changelog/rss.xml"/><item><title>Codex app updates</title><link>https://developers.openai.com/codex/changelog/#codex-2026-06-04-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-06-04-app</guid><description>Codex app updates</description><pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate><content:encoded># Codex app updates
+
+### New features
+
+- Added activity insights and share cards to the
+  [Profile section](/codex/app/settings#profile). You can review Codex usage
+  highlights and save a profile card; sharing is available on consumer ChatGPT
+  plans.
+
+### Performance improvements and bug fixes
+
+- Improved Computer Use startup readiness and appshot error reporting.
+- Fixed browser and review UI issues, including fullscreen browser composer
+  controls, hex color swatches, terminal scrollbar alignment, and animated diff
+  stat alignment.
+- Expanded onboarding with more role choices so Codex can tailor first-run
+  suggestions more accurately.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Build and deploy websites with Sites</title><link>https://developers.openai.com/codex/changelog/#codex-2026-06-02</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-06-02</guid><description>Build and deploy websites with Sites</description><pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate><content:encoded># Build and deploy websites with Sites
+
+[**Sites**](/codex/sites) is now available in preview in the Codex app. Use the
+Sites plugin to create, save, deploy, and inspect websites, dashboards, internal
+tools, web apps, and games hosted by OpenAI.
+
+Open **Sites** in the app sidebar to return to your projects and manage hosted
+environment variables and secrets.
+
+ChatGPT Business workspaces include Sites by default. ChatGPT Enterprise admins
+can enable Sites for the appropriate roles through role-based access control
+(RBAC).</content:encoded></item><item><title>ChatGPT for iOS</title><link>https://developers.openai.com/codex/changelog/#codex-2026-06-02-mobile</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-06-02-mobile</guid><description>ChatGPT for iOS</description><pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate><content:encoded># ChatGPT for iOS
+
+### New features
+
+- Added an optional Face ID or passcode lock for Codex.
+- Added a new settings screen for choosing Queue or Steer as the default
+  follow-up behavior and toggling line wrapping for code diffs.
+- Added support for connecting to Windows machines over SSH.
+
+### Improvements and bug fixes
+
+- Added support for `/side &lt;prompt&gt;` to start a side
+  conversation with an initial question.
+- Improved follow-up prompts, the Codex home screen, and viewing changed files.
+- Fixed issues with reconnecting, archiving threads, loading tasks, and
+  connecting to hosts.</content:encoded></item><item><title>Use Codex with Amazon Bedrock</title><link>https://developers.openai.com/codex/changelog/#codex-2026-06-01</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-06-01</guid><description>Use Codex with Amazon Bedrock</description><pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate><content:encoded># Use Codex with Amazon Bedrock
+
+Codex can now use supported OpenAI models available through Amazon Bedrock.
+Configure [Amazon Bedrock as your model provider](/codex/amazon-bedrock) to run
+Codex locally with AWS-managed authentication, account controls, and billing.</content:encoded></item><item><title>Terminal placement controls</title><link>https://developers.openai.com/codex/changelog/#codex-2026-06-01-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-06-01-app</guid><description>Terminal placement controls</description><pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate><content:encoded># Terminal placement controls
+
+### New features
+
+- Added **Default terminal location** in [General settings](/codex/app/settings#general).
+  When the bottom panel is enabled, choose whether the terminal shortcut and
+  environment actions open terminal tabs in the bottom panel or the right panel.
+
+### Performance improvements and bug fixes
+
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Computer use and mobile access on Windows</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-28-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-28-app</guid><description>Computer use and mobile access on Windows</description><pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate><content:encoded># Computer use and mobile access on Windows
+
+### New features
+
+- [Computer Use](/codex/app/computer-use) now works on Windows. Codex can
+  operate Windows desktop apps by seeing, clicking, and typing in the
+  foreground while it works.
+- [Remote control](/codex/remote-connections) now supports Windows devices. You
+  can start Codex work on a Windows device from ChatGPT on iOS or Android, or
+  from a Mac running Codex, and check its progress remotely.
+- The [Profile section](/codex/app/settings#profile) now shows your profile
+  details, usage stats, and token activity.
+- Added thread coordination for local projects and worktrees, including
+  separate background threads when explicitly requested.
+- Expanded search for past Codex app threads to include conversation content
+  and Git branch names.
+- Added stable identicons for background subagents across the app.
+- Improved keyboard shortcut settings with keypress search and a reset-all
+  action.
+- Improved Chrome context capture for Google Docs, Sheets, and Slides tabs.
+
+### Performance improvements and bug fixes
+
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>ChatGPT for iOS</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-25-mobile</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-25-mobile</guid><description>ChatGPT for iOS</description><pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate><content:encoded># ChatGPT for iOS
+
+### New features
+
+- Added Spotlight and Shortcuts support for opening Codex Mobile directly.
+- Added browsing for archived Codex threads.
+- Added `/side` for opening a side conversation.
+- Added options to save or copy rendered images.
+
+### Improvements and bug fixes
+
+- Improved iPad keyboard shortcuts.
+- Improved setup and relaunch reliability.
+- Fixed issues with task progress, loading archived threads, previewing code
+  changes, and switching hosts.</content:encoded></item><item><title>Appshots, goal mode, and more</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-21</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-21</guid><description>Appshots, goal mode, and more</description><pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate><content:encoded># Appshots, goal mode, and more
+
+[Appshots](/codex/appshots) are now available in the Codex app on macOS. Press
+both Command keys to send the frontmost app window to Codex with a screenshot
+and available text, so Codex can work from context in another app without you
+copying, pasting, or describing it manually.
+
+This launch also includes:
+
+- [Goal mode](/codex/prompting#goal-mode) is no longer an experimental feature
+  and is available in the Codex app, IDE extension, and CLI. With Goal mode, you
+  can have Codex drive toward a specific objective for hours or even days.
+- [Remote computer use](/codex/app/computer-use#locked-use), so Codex can use
+  desktop apps after your Mac locks, including remotely via Codex Mobile. Codex
+  scopes locked use to active, trusted computer use turns and includes
+  safeguards such as short-lived authorization, covered displays, relock on
+  local input, and manual-unlock fallback.
+- [Plugin sharing](/codex/plugins/build#share-a-local-plugin-with-your-workspace)
+  through marketplace sources is available for ChatGPT Business. Enterprise
+  support is coming soon. Teams can distribute reusable plugin bundles that
+  include skills, app integrations, MCP servers, and lifecycle hooks.
+- [Advanced in-app browser annotations](/codex/app/browser#styling-feedback)
+  let you tweak styling such as font size, colors, and spacing directly using
+  annotations. This gives Codex a clearer signal for changes.
+- Browser-use improvements across in-app browser &amp; Chrome:
+  - Codex can now download and extract all image assets from a page much more
+    quickly.
+  - Codex can now extract structured data from pages more effectively and find
+    information more quickly with a read-only JS sandbox.
+- Chrome extension will create less clutter when using it. Codex will no longer
+  create tab groups when taking over existing tabs, and at the end of a task for
+  handoff. Instead, it uses tab icons to indicate status.
+- Significantly improved reliability for browser use. We fixed bugs on Windows,
+  flaky availability of the plugin to non geo-blocked regions, and many other
+  issues impacting performance.</content:encoded></item><item><title>ChatGPT for iOS</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-18-mobile</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-18-mobile</guid><description>ChatGPT for iOS</description><pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate><content:encoded># ChatGPT for iOS
+
+### New features
+
+- Added support for opening completed Codex tasks directly from iOS
+  notifications.
+- Added the ability to open changed files directly while reviewing a task.
+
+### Improvements and bug fixes
+
+- Improved task resume, reconnection, and foreground reliability.
+- Improved task progress updates, code review, and message composition.</content:encoded></item><item><title>Work with Codex from anywhere</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-13-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-13-app</guid><description>Work with Codex from anywhere</description><pubDate>Thu, 14 May 2026 00:00:00 GMT</pubDate><content:encoded># Work with Codex from anywhere
+
+You can now use Codex from the ChatGPT mobile app by connecting it to a Mac
+running the Codex app. Codex runs from the connected host, so the same projects,
+files, credentials, plugins, skills, and configuration are available from your
+phone.
+
+See [Remote connections](/codex/remote-connections) for mobile setup, choosing
+a host, what comes from the connected machine, and SSH hosts. This launch also
+includes [Hooks](/codex/hooks) general availability,
+[Codex access tokens](/codex/enterprise/access-tokens) for trusted automation,
+and [Enterprise admin setup](/codex/enterprise/admin-setup) guidance.</content:encoded></item><item><title>Expanded Auto-review documentation</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-11</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-11</guid><description>Expanded Auto-review documentation</description><pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate><content:encoded># Expanded Auto-review documentation
+
+Added a dedicated
+[Auto-review](/codex/concepts/sandboxing/auto-review) page covering the
+reviewer lifecycle, trigger conditions, failure behavior, and local or managed
+configuration.
+
+Also updated the [Agent approvals &amp; security](/codex/agent-approvals-security)
+and [Sandbox](/codex/concepts/sandboxing) docs so they explain more clearly how
+Auto-review relates to the sandbox boundary.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-08-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-08-app</guid><description>Codex app</description><pubDate>Fri, 08 May 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added an in-app trust review flow for hooks and kept Hooks settings reachable even before hooks are fully configured.
+
+### Performance improvements and bug fixes
+
+- Restored tooltip-wrapped dropdowns that could stop opening after the tooltip rewrite.
+- Preserved in-progress message edits across thread switches.
+- Fixed several desktop workflow regressions, including `Ctrl+V` paste in the Windows terminal, opening modified external links outside the in-app browser, and keeping feedback slash commands attached to the right thread.
+- Improved loading and panel polish by showing model loading while a thread resumes, hiding unavailable model controls during load, and bundling summary-panel layout and hover fixes.
+- Kept the Computer Use settings control visible even when uninstalled and disabled problematic extension hover panels.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex for Chrome</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-07</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-07</guid><description>Codex for Chrome</description><pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate><content:encoded># Codex for Chrome
+
+With the new extension for Chrome, Codex is even better at working with apps
+and websites in your browser. It works in parallel across tabs in the
+background without taking over your browser, and you stay in control of which
+websites Codex can use.
+
+Learn more in the [Codex Chrome extension documentation](/codex/app/chrome-extension).</content:encoded></item><item><title>Codex analytics governance docs update</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-06</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-06</guid><description>Codex analytics governance docs update</description><pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate><content:encoded># Codex analytics governance docs update
+
+Updated the Codex enterprise governance guide with more detailed coverage of the
+Analytics dashboard charts, data export options, and enterprise Analytics API
+endpoints.</content:encoded></item><item><title>Create Codex access tokens</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-05</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-05</guid><description>Create Codex access tokens</description><pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate><content:encoded># Create Codex access tokens
+
+ChatGPT Enterprise workspace owners and admins can allow permitted members to
+create Codex access tokens for trusted, non-interactive Codex local workflows.
+Members can use access tokens to run Codex from scripts, schedulers, and private
+CI runners with their ChatGPT workspace identity.
+
+Learn more in [Access tokens](/codex/enterprise/access-tokens).</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-05-05-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-05-05-app</guid><description>Codex app</description><pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added dictation cleanup plus a configurable dictation dictionary for names, file paths, and code symbols.
+- Added zoom and download controls to the image lightbox.
+
+### Performance improvements and bug fixes
+
+- Improved voice and dictation error messages for microphone, connection, and quota failures.
+- Fixed in-app browser comment markers so they stay aligned across scrolling, zoom, and responsive layout changes.
+- Made pull request creation and recovery flows more reliable by preserving newly created pull request state, classifying more app-server failures as restart-required, and stopping exhausted remote reconnect loops.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-24-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-24-app</guid><description>Codex app</description><pubDate>Fri, 24 Apr 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added a tooltip on realtime delegation messages to clarify that Codex uses the surrounding voice conversation as context.
+
+### Performance improvements and bug fixes
+
+- Fixed search in long review files so next and previous results reliably jump to off-screen matches.
+- Kept embedded MCP app panels from restarting or losing state during fullscreen changes and thread reloads.
+- Fixed several desktop regressions, including tray crashes when the local connection is missing, duplicate macOS fullscreen menu entries, and broken global dictation hotkeys on older macOS versions.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>GPT-5.5 and Codex app updates</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-23</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-23</guid><description>GPT-5.5 and Codex app updates</description><pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate><content:encoded># GPT-5.5 and Codex app updates
+
+[GPT-5.5 is now available in Codex](https://openai.com/index/introducing-gpt-5-5/)
+as OpenAI&apos;s newest frontier model for complex coding, computer use, knowledge
+work, and research workflows.
+
+#### GPT-5.5 in Codex
+
+GPT-5.5 is the recommended choice for most Codex tasks when it appears in your
+model picker. It&apos;s especially useful for implementation, refactors, debugging,
+testing, validation, and knowledge-work artifacts.
+
+To switch to GPT-5.5:
+
+- In the CLI, start a new thread with:
+  ```bash
+  codex --model gpt-5.5
+  ```
+  Or use `/model` during a session.
+- In the IDE extension, choose GPT-5.5 from the model selector in the composer.
+- In the Codex app, choose GPT-5.5 from the model selector in the composer.
+
+If you don&apos;t see GPT-5.5 yet, update the CLI, IDE extension, or Codex app to
+the latest version. During the rollout, continue using GPT-5.4 if GPT-5.5 is
+not yet available.
+
+#### Browser use in the Codex app
+
+The Codex app can now let Codex operate the in-app browser for local
+development servers and file-backed pages. Ask Codex to use the browser when it
+needs to click through a rendered UI, reproduce a visual bug, or verify a local
+fix inside the app.
+
+Browser use runs through the bundled Browser plugin. In settings, you can
+manage the plugin and review allowed or blocked websites.
+
+#### Automatic approval reviews
+
+Codex can route eligible approval prompts through an automatic reviewer agent
+before the request runs. When configured, the Codex app shows an automatic
+review item with the review status and risk level, so you can see whether the
+reviewer approved, denied, stopped, or timed out before deciding.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-20-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-20-app</guid><description>Codex app</description><pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added local branch search and non-image file pasting in the composer.
+- Added collapsible sidebar sections, tray usage-limit surfacing, and a command-palette theme switcher.
+
+### Performance improvements and bug fixes
+
+- Made review faster and more stable with better diff batching and preserved diff and search state.
+- Fixed projectless cwd and permissions handling, default file opening, spreadsheet suggestions, and remote-control reconnect issues.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex can now help with more of your work</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-16-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-16-app</guid><description>Codex can now help with more of your work</description><pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate><content:encoded># Codex can now help with more of your work
+
+Codex is becoming a broader workspace for getting work done with AI. This
+update makes it easier to start work with less setup, verify what Codex is
+building, create richer outputs, and keep momentum across longer-running tasks.
+
+#### Verify more of your work
+
+The Codex app now includes an early [**in-app browser**](/codex/app/browser). You
+can open local or public pages that don&apos;t require sign-in, comment directly on
+the rendered page, and ask Codex to address page-level feedback.
+
+[**Computer use**](/codex/app/computer-use) lets Codex operate macOS apps by seeing,
+clicking, and typing, which helps with native app testing, simulator flows,
+low-risk app settings, and GUI-only bugs.
+
+The feature isn&apos;t available in the European Economic Area, the United Kingdom, or
+Switzerland at launch.
+
+#### Start, follow, and steer work
+
+[**Chats**](/codex/app/features#projectless-threads) are threads you can start
+without choosing a project folder first. They&apos;re useful for research, writing,
+planning, analysis, source gathering, and tool-driven work that doesn&apos;t begin in
+a codebase.
+
+For work that needs a later check-in,
+[**thread automations**](/codex/app/automations#thread-automations) can wake up
+the same thread on a schedule while preserving the conversation context. Use
+them to check a long-running process, watch for updates, or continue a
+follow-up loop without starting from scratch.
+
+[**The task sidebar**](/codex/app/features#task-sidebar) makes plans, sources,
+generated artifacts, and summaries easier to follow while Codex works.
+[**Context-aware suggestions**](/codex/app/settings#context-aware-suggestions)
+can also help you pick up relevant follow-ups when you start or return to Codex.
+
+#### Stronger for software development
+
+Codex now brings more of the **pull request workflow** into the app. You can
+inspect [**GitHub pull requests**](/codex/app/review#pull-request-reviews) in the
+sidebar, review comments in the diff, review changed files, then ask Codex to
+explain feedback, make changes, check them, and keep the review moving.
+
+#### Review richer outputs
+
+The [**artifact viewer**](/codex/app/features#artifact-viewer) can preview
+generated files such as PDF files, spreadsheets, documents, and presentations in
+the sidebar before you commit or share them. [**Memories**](/codex/memories),
+where available, can also carry useful context from past tasks into future
+threads, including stable preferences, project conventions, and recurring work
+patterns.
+
+#### Other features
+
+- [Remote connections](/codex/remote-connections) - We are gradually rolling out SSH remote connections in alpha
+- Support for [multiple terminals](/codex/app/features#integrated-terminal)
+- macOS menu bar and [Windows system tray](/codex/app/windows) support
+- [Multi-window support](/codex/app/features#floating-pop-out-window)
+- [Intel Mac support](/codex/app)
+- [New plugins](/codex/plugins)
+- Improved thread and tool rendering</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-12-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-12-app</guid><description>Codex app</description><pubDate>Sun, 12 Apr 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added command-menu file search, including `Cmd+P` routing into workspace file search.
+- Added rich previews in the sidebar file viewer for images, PDFs, and Markdown.
+- Added terminal tabs per thread, a selected-text Ask Codex overlay, and a Help menu feedback entry.
+
+### Performance improvements and bug fixes
+
+- Improved review diff whitespace handling and search highlighting.
+- Fixed in-app browser address bar and external-open issues, plus several file viewer and side-panel bugs.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-10-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-10-app</guid><description>Codex app</description><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added Windows Store updater support.
+- Expanded pull request workflows with an activity timeline, PR-page commenting, and push choices in the push modal.
+- Added workspace file tabs in the thread side panel, drag-and-drop tab reordering, run action editing, and a logout confirmation dialog.
+
+### Performance improvements and bug fixes
+
+- Improved pull request board performance and comment flyouts.
+- Improved update and navigation resilience, and fixed projectless visibility, unread-state, and pinned-row edge cases.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-09-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-09-app</guid><description>Codex app</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added collapsible inline review comments and inline or detached review modes.
+- Added a Git summary and Sources section in the thread side panel.
+- Added a New Quick Chat command and local video embeds in the app.
+
+### Performance improvements and bug fixes
+
+- Preserved thread scroll position per conversation and unread state across windows.
+- Improved review refresh reliability, and fixed dictation loss, right-panel reset, and GitHub reconnect messaging.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex model availability update</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-07</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-07</guid><description>Codex model availability update</description><pubDate>Tue, 07 Apr 2026 00:00:00 GMT</pubDate><content:encoded># Codex model availability update
+
+We&apos;re updating model availability for users who sign in with ChatGPT. Starting
+April 7, the model picker no longer shows `gpt-5.2-codex`,
+`gpt-5.1-codex-mini`, `gpt-5.1-codex-max`, `gpt-5.1-codex`, `gpt-5.1`, or
+`gpt-5`. On April 14, we&apos;ll remove those models from Codex for ChatGPT sign-in.
+
+Users can still choose from `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.3-codex`, and
+`gpt-5.2`. ChatGPT Pro users can also choose `gpt-5.3-codex-spark`.
+
+To use another API-supported model in Codex, sign in with an API key or
+configure a model provider.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-04-01-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-04-01-app</guid><description>Codex app</description><pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added workspace settings to the app.
+- Added &quot;Don&apos;t ask again&quot; handling and polish for custom MCP approval panels.
+- Added native Windows updater support, including MSIX support, plus a Windows system tray menu so Codex can stay resident after the last window closes.
+- Added app and file `@` mentions in the automation composer, surfaced subagent diff stats in the composer, and added artifact cards for generated file citations.
+- Added a Quick Chat app-menu shortcut, a review file tree open menu, early heartbeat automation affordances in threads, and image support for remote connections.
+
+### Performance improvements and bug fixes
+
+- Fixed review panel scroll jumps and PR status actions while a conversation is still running.
+- Fixed several multi-window issues, plus `@`-mention results, duplicate project labeling, Windows `runGit` behavior, and revert, unstage, and stage-all actions.
+- Improved remote-thread and sidebar polish, Windows update recovery, unsupported-version guidance, and overall thread search speed.
+- Fixed sticky review issues such as diff hunk expansion, header overlap, archive-thread crashes, and window-zoom shell sizing.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Build and install plugins in Codex</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-25</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-25</guid><description>Build and install plugins in Codex</description><pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Build and install plugins in Codex
+
+Codex now supports **plugins**: installable bundles that package skills, app
+integrations, and MCP server configuration for reusable workflows.
+
+Plugins are available in the Codex app, CLI, and IDE extensions.
+
+You can install curated plugins from the plugin directory, or scaffold a local
+plugin with `@plugin-creator` and test it with workspace-scoped or home-scoped
+marketplaces.
+
+Learn more in the [plugins documentation](/codex/plugins).
+
+&lt;div class=&quot;not-prose my-2 mb-4&quot;&gt;
+  &lt;img
+    src=&quot;/images/codex/plugins/directory.png&quot;
+    alt=&quot;&quot;
+    class=&quot;block w-full rounded-lg border border-default my-0&quot;
+  /&gt;
+&lt;/div&gt;
+
+#### Plugin structure
+
+Every plugin is a folder with a required `.codex-plugin/plugin.json` manifest
+and optional supporting files:
+
+```text
+my-plugin/
+  .codex-plugin/
+    plugin.json   # Required: plugin manifest
+  skills/         # Optional: packaged skills
+  .app.json       # Optional: app or connector mappings
+  .mcp.json       # Optional: MCP server configuration
+  assets/         # Optional: icons, logos, screenshots
+```
+
+#### Install plugins per-user or per-repo
+
+You can install plugins for just yourself with
+`~/.agents/plugins/marketplace.json` and `~/.codex/plugins/`, or for everyone
+on a project with `.agents/plugins/marketplace.json` and a repo-local plugin
+directory such as `./plugins/`.
+
+#### Curated plugins and local development
+
+Codex surfaces curated public plugins in the plugin directory. Codex also ships
+with the built-in `@plugin-creator` skill to help you scaffold a plugin, add a
+local marketplace entry, and test it before sharing it with teammates.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-25-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-25-app</guid><description>Codex app</description><pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Redesigned the skills and plugins browse and manage pages.
+- Added per-window zoom and a clearer edited-files state in review.
+- Added automation titles and icons in the sidebar, plus bundled Raycast themes.
+
+### Performance improvements and bug fixes
+
+- Kept loaded threads and projects visible during reconnects and made navigation feel faster.
+- Fixed archive freezes, markdown wrapping, hotkey-window regressions, and several permissions, terminal, and worktree issues.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-24-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-24-app</guid><description>Codex app</description><pubDate>Tue, 24 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added search for past Codex app threads, including a sidebar shortcut and keyboard shortcuts for jumping to recent threads.
+- Added a one-click option to archive all local threads in a project.
+- Synced key settings between the Codex app and the VS Code extension, and added a settings entry point in the extension.
+
+### Performance improvements and bug fixes
+
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-20-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-20-app</guid><description>Codex app</description><pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added Floating Composer v2.
+- Added terminal shortcuts for jumping by word and line.
+- Improved plugin discovery surfaces and file-path rendering for saved images.
+
+### Performance improvements and bug fixes
+
+- Fixed sidebar crashes when subagent turn items are missing.
+- Fixed pop-out thread routing and preserved local paths for composer image attachments.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-19-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-19-app</guid><description>Codex app</description><pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added skills to the `@` menu so you can insert them from the composer alongside other mentions.
+- `Cmd/Ctrl+F` now starts with your current text selection, which makes searching reviews and diffs faster, alongside broader review navigation improvements such as a refreshed file tree and percentage-based file tree resizing.
+- Added a branded loading shimmer while the app starts.
+
+### Performance improvements and bug fixes
+
+- Improved collapsed diff summaries in review.
+- Fixed slash-command focus and composer alignment issues, and polished plugin cards and step details.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-18-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-18-app</guid><description>Codex app</description><pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- You can now fork a conversation from an earlier message, not just the latest turn.
+- Added slash commands for switching models and reasoning levels, and made slash commands work in the middle of a draft prompt.
+- Added notifications for plan mode questions so it&apos;s easier to notice when Codex needs input.
+
+### Performance improvements and bug fixes
+
+- Fixed thread handoff and subagent navigation issues across worktrees and the VS Code extension.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Introducing GPT-5.4 mini in Codex</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-17</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-17</guid><description>Introducing GPT-5.4 mini in Codex</description><pubDate>Tue, 17 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5.4 mini in Codex
+
+GPT-5.4 mini is now available in Codex as a fast, efficient model for lighter
+coding tasks and subagents.
+
+It improves over GPT-5 mini across coding, reasoning, image understanding, and
+tool use while running more than 2x faster. In Codex, GPT-5.4 mini uses 30% as
+much of your included limits as GPT-5.4, so comparable tasks can last about
+3.3x longer before you hit those limits.
+
+GPT-5.4 mini is available in the Codex app, the CLI, the IDE extension, and
+Codex on the web. GPT-5.4 mini is also available in the API.
+
+Use GPT-5.4 mini for codebase exploration, large-file review, processing
+supporting documents, and other less reasoning-intensive subagent work. For
+more complex planning, coordination, and final judgment, start with GPT-5.4.
+
+To switch to GPT-5.4 mini:
+
+- In the CLI, start a new thread with:
+  ```bash
+  codex --model gpt-5.4-mini
+  ```
+  Or use `/model` during a session.
+- In the IDE extension, choose GPT-5.4 mini from the model selector in the
+  composer.
+- In the Codex app, choose GPT-5.4 mini from the model selector in the
+  composer.
+
+If you don&apos;t see GPT-5.4 mini yet, update the CLI, IDE extension, or Codex app
+to the latest version.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-16-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-16-app</guid><description>Codex app</description><pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added back and forward buttons in the header so you can move between recent screens more quickly.
+- Added an **Open in Finder**, **Open in Explorer**, or **Open in File Manager** action from thread menus to jump straight to a thread&apos;s project folder.
+
+### Performance improvements and bug fixes
+
+- Improved resume and thread error toasts with clearer details when something goes wrong.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-12-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-12-app</guid><description>Codex app</description><pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### Themes
+
+Change the Codex app appearance in **Settings** by choosing a base theme,
+adjusting accent, background, and foreground colors, and changing the UI and
+code fonts. You can also share your custom theme with friends.
+
+### Revamped Automations
+
+You can now choose whether automations run locally or on a worktree, define
+custom reasoning levels and models, and use templates to find inspiration for
+new automations.
+
+### Performance improvements and bug fixes
+
+Various bug fixes and performance improvements.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-11-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-11-app</guid><description>Codex app</description><pubDate>Wed, 11 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Codex can now read the integrated terminal for the current thread, so it can check the status of a running development server or refer back to failed build output while it works with you.
+
+### Performance improvements and bug fixes
+
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Introducing GPT-5.4 in Codex</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-05</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-05</guid><description>Introducing GPT-5.4 in Codex</description><pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5.4 in Codex
+
+GPT-5.4 is now available in Codex as OpenAI&apos;s most capable and efficient
+frontier model for professional work.
+
+It combines recent advances in reasoning, coding, and agentic workflows in one
+model, and it&apos;s the recommended choice for most Codex tasks.
+
+In Codex, GPT-5.4 is the first general-purpose model with native computer-use
+capabilities. GPT-5.4 in Codex includes experimental support for the 1M
+context window. It supports complex workflows across applications and
+long-horizon tasks, with stronger tool use and tool search that help agents
+find and use the right tools more efficiently.
+
+GPT-5.4 is available everywhere you can use Codex: the Codex app, the CLI, the
+IDE extension, and Codex Cloud on the web. GPT-5.4 is also available in the
+API.
+
+To switch to GPT-5.4:
+
+- In the CLI, start a new thread with:
+  ```bash
+  codex --model gpt-5.4
+  ```
+  Or use `/model` during a session.
+- In the IDE extension, choose GPT-5.4 from the model selector in the
+  composer.
+- In the Codex app, choose GPT-5.4 from the model selector in the composer.
+
+If you don&apos;t see GPT-5.4 yet, update the CLI, IDE extension, or Codex app to
+the latest version.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-05-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-05-app</guid><description>Codex app</description><pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### Performance improvements and bug fixes
+
+- Improved remote connections with clearer connection errors, better status updates, and clearer host labels in thread and settings views.
+- Fixed copy and paste shortcuts in the integrated terminal on Windows.
+- Fixed an issue where archived pinned threads could reappear in the sidebar.
+- Fixed an issue where repeated `codex://new` links could stop prefilling a new conversation when the app was already open.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-04-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-04-app</guid><description>Codex app</description><pubDate>Wed, 04 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+#### Codex app for Windows
+
+The Codex app is now available on Windows. The app gives you one interface
+for working across projects, running parallel agent threads, and reviewing
+results in one place.
+
+The Codex app runs natively on Windows using PowerShell and a native Windows
+sandbox for bounded permissions, so you can use Codex on Windows without
+moving your workflow into WSL, onto a virtual machine, or by deactivating the
+sandbox.
+
+The Windows app includes the same core features as the rest of the Codex app:
+
+- [Skills](/codex/app/features#skills-support) to discover and extend Codex
+  capabilities.
+- [Automations](/codex/app/automations) to run work in the background.
+- [Worktrees](/codex/app/worktrees) to handle independent tasks in the same
+  project.
+
+If you prefer to develop in WSL, you can also switch the Codex agent and the
+integrated terminal to run there.
+
+Download it from the
+[Microsoft Store](https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi)
+and sign in with your ChatGPT account or an API key. For setup and
+configuration details, see [Setup](/codex/app/windows#setup), [Use WSL with the
+Codex app](/codex/app/windows#use-wsl-with-the-codex-app), and [Customize the
+app for your development setup](/codex/app/windows#customize-the-app-for-your-development-setup).</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-03-03-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-03-03-app</guid><description>Codex app</description><pubDate>Tue, 03 Mar 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added a Worktrees setting to turn automatic cleanup of Codex-managed worktrees on or off.
+- Added Handoff support for moving a thread between Local and [Worktree](/codex/app/worktrees).
+- Added an explicit English option in the language menu.
+
+### Performance improvements and bug fixes
+
+- Improved GitHub and pull request workflows.
+- Improved approval prompts and app connection sign-in flows.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-28-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-28-app</guid><description>Codex app</description><pubDate>Sat, 28 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### Performance improvements and bug fixes
+
+- Fixed a regression where conversation and task views could stop updating while Codex was streaming a response.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-27-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-27-app</guid><description>Codex app</description><pubDate>Fri, 27 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added pull request status badges in task rows and PR buttons, including draft, open, merged, and closed states.
+- Added a Worktrees setting to choose how many Codex-managed worktrees to keep before older ones are cleaned up.
+
+### Performance improvements and bug fixes
+
+- Improved scrolling and navigation in long conversations and code review, including fixes for thread jumpiness, sidebar jitter, and diff scrolling.
+- Improved app startup reliability and keyboard zoom behavior.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-26-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-26-app</guid><description>Codex app</description><pubDate>Thu, 26 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added new MCP shortcuts in the composer, including install keyword suggestions and an MCP server submenu in **Add context**.
+- Added support for `@mentions` and skill mentions in inline review comments.
+
+### Performance improvements and bug fixes
+
+- Improved rendering of MCP tool calls and Mermaid diagram error handling.
+- Fixed an issue where stopped terminal commands could continue appearing as running.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-17-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-17-app</guid><description>Codex app</description><pubDate>Tue, 17 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added drag-and-drop support to reorder queued messages.
+- Added a warning when the selected model is downgraded.
+
+### Improvements and bug fixes
+
+- Improved file workflows with fuzzy file search and better attachment recovery after restart.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Introducing GPT-5.3-Codex-Spark</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-12</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-12</guid><description>Introducing GPT-5.3-Codex-Spark</description><pubDate>Thu, 12 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5.3-Codex-Spark
+
+[Today, we&apos;re releasing a research preview of GPT-5.3-Codex-Spark](https://openai.com/index/introducing-gpt-5-3-codex-spark/),
+a smaller version of GPT-5.3-Codex and our first model designed for real-time
+coding. Codex-Spark is optimized to feel near-instant, delivering more than 1000 tokens per second while remaining highly capable for real-world coding tasks.
+
+Codex-Spark is available in research preview for ChatGPT Pro users in
+the latest Codex app, CLI, and IDE extension. This release also marks the first
+milestone in our partnership with Cerebras.
+
+At launch, Codex-Spark is text-only with a 128k context window. During
+the research preview, usage has separate model-specific limits and doesn&apos;t
+count against standard Codex limits. During high demand, access may slow down
+or queue while we balance reliability across users.
+
+To switch to GPT-5.3-Codex-Spark:
+
+- In the CLI, start a new thread with:
+  ```bash
+  codex --model gpt-5.3-codex-spark
+  ```
+  Or use `/model` during a session.
+- In the IDE extension, choose GPT-5.3-Codex-Spark from the model selector in
+  the composer.
+- In the Codex app, choose GPT-5.3-Codex-Spark from the model selector in the
+  composer.
+
+If you don&apos;t see GPT-5.3-Codex-Spark yet, update the CLI, IDE extension, or
+Codex app to the latest version.
+
+GPT-5.3-Codex-Spark isn&apos;t available in the API at launch.
+For API-key workflows, continue using `gpt-5.2-codex`.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-12-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-12-app</guid><description>Codex app</description><pubDate>Thu, 12 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Support for GPT-5.3-Codex-Spark
+- Added conversation forking
+- Added [floating pop-out window](/codex/app/features#floating-pop-out-window) to take a conversation with you
+
+### Bug fixes
+
+- Improved performance and bug fixes
+
+Alpha testing for the Codex app on Windows is also starting. [Sign up here](https://openai.com/form/codex-app/) to be a potential alpha tester.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-10-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-10-app</guid><description>Codex app</description><pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added branch search in the branch picker.
+- Added clearer guidance for entering plan mode when you type `plan` in the composer.
+- Added support for parallel approvals.
+
+### Improvements and bug fixes
+
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>GPT-5.3-Codex in Cursor and VS Code</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-09</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-09</guid><description>GPT-5.3-Codex in Cursor and VS Code</description><pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate><content:encoded># GPT-5.3-Codex in Cursor and VS Code
+
+Starting today, GPT-5.3-Codex is available natively in Cursor and VS Code.
+
+API access is starting with a small set of customers as part of a phased
+release.
+
+This is the first model treated as a high security capability under the
+Preparedness Framework.
+
+Safety controls will continue to scale, and API access will expand over the
+next few weeks.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-08-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-08-app</guid><description>Codex app</description><pubDate>Sun, 08 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added MCP and personality actions to the command palette.
+- Updated follow-up behavior to queue by default.
+
+### Improvements and bug fixes
+
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-06-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-06-app</guid><description>Codex app</description><pubDate>Fri, 06 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added a file-reference action to reveal files directly in your OS file manager.
+
+### Improvements and bug fixes
+
+- Improved handling of large reviews by removing the overall diff-size cap in the review pane.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Introducing GPT-5.3-Codex</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-05</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-05</guid><description>Introducing GPT-5.3-Codex</description><pubDate>Thu, 05 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5.3-Codex
+
+[Today we&apos;re releasing GPT-5.3-Codex](https://openai.com/index/introducing-gpt-5-3-codex/),
+the most capable agentic coding model to date for complex, real-world software
+engineering.
+
+GPT-5.3-Codex combines the frontier coding performance of GPT-5.2-Codex with
+stronger reasoning and professional knowledge capabilities, and runs 25% faster
+for Codex users. It&apos;s also better at collaboration while the agent is
+working—delivering more frequent progress updates and responding to steering in
+real time.
+
+GPT-5.3-Codex is available with paid ChatGPT plans everywhere you can use
+Codex: the Codex app, the CLI, the IDE extension, and Codex Cloud on the web.
+API access for the model will come soon.
+
+To switch to GPT-5.3-Codex:
+
+- In the CLI, start a new thread with:
+  ```bash
+  codex --model gpt-5.3-codex
+  ```
+  Or use `/model` during a session.
+- In the IDE extension, make sure you are signed in with ChatGPT, then choose
+  GPT-5.3-Codex from the model selector in the composer.
+- In the Codex app, make sure you are signed in with ChatGPT, then choose
+  GPT-5.3-Codex from the model selector in the composer.
+- If you don&apos;t see GPT-5.3-Codex, update the CLI, IDE extension, or Codex app
+  to the latest version.
+
+For API-key workflows, continue using `gpt-5.2-codex` while API support rolls
+out.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-05-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-05-app</guid><description>Codex app</description><pubDate>Thu, 05 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Support for **[GPT-5.3-Codex](https://openai.com/index/introducing-gpt-5-3-codex/)**.
+- Added mid-turn steering. Submit a message while Codex is working to direct its behavior.
+- Attach or drop any file type.
+
+### Bug fixes
+
+- Fix flickering of the app.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-04-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-04-app</guid><description>Codex app</description><pubDate>Wed, 04 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added **Zed** and **Textmate** as options to open files and folders.
+- Added PDF preview in the review panel.
+
+### Bug fixes
+
+- Performance improvements.</content:encoded></item><item><title>Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-03-app</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-03-app</guid><description>Codex app</description><pubDate>Tue, 03 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Codex app
+
+### New features
+
+- Added thread renaming on double-click in the thread list.
+
+### Improvements and bug fixes
+
+- Renamed **Sync** to **Handoff** and added clearer source/destination stats in the handoff UI.
+- Additional performance improvements and bug fixes.</content:encoded></item><item><title>Introducing the Codex app</title><link>https://developers.openai.com/codex/changelog/#codex-2026-02-02</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-02-02</guid><description>Introducing the Codex app</description><pubDate>Mon, 02 Feb 2026 00:00:00 GMT</pubDate><content:encoded># Introducing the Codex app
+
+#### Codex app
+
+The Codex app for macOS is a desktop interface for running agent threads in parallel and collaborating with agents on long-running tasks. It includes a project sidebar, thread list, and review pane for tracking work across projects.
+
+Key features:
+
+- [Multitask across projects](/codex/app/features#multitask-across-projects)
+- [Built-in worktree support](/codex/app/worktrees)
+- [Voice dictation](/codex/app/features#voice-dictation)
+- [Built-in Git tooling](/codex/app/features#built-in-git-tools)
+- [Skills](/codex/app/features#skills-support)
+- [Automations](/codex/app/automations)
+
+For a limited time, **ChatGPT Free and Go include Codex**, and **Plus, Pro, Business, Enterprise, and Edu** plans get **double rate limits**. Those higher limits apply in the app, the CLI, your IDE, and the cloud.
+
+Learn more in the [Introducing the Codex app](https://openai.com/index/introducing-the-codex-app/) blog post.
+
+Check out the [Codex app documentation](/codex/app) for more.</content:encoded></item><item><title>Web search is now enabled by default</title><link>https://developers.openai.com/codex/changelog/#codex-2026-01-28</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-01-28</guid><description>Web search is now enabled by default</description><pubDate>Wed, 28 Jan 2026 00:00:00 GMT</pubDate><content:encoded># Web search is now enabled by default
+
+Codex now enables web search for local tasks in the Codex CLI and IDE Extension.
+By default, Codex uses a web search cache, which is an OpenAI-maintained index of web results. Cached mode returns pre-indexed results instead of fetching live pages, while live mode fetches the most recent data from the web. If you are using `--yolo` or another [full access sandbox setting](/codex/agent-approvals-security), web search defaults to live results. To disable this behavior or switch modes, use the `web_search` configuration option:
+
+- `web_search = &quot;cached&quot;` (default; serves results from the web search cache)
+- `web_search = &quot;live&quot;` (fetches the most recent data from the web; same as `--search`)
+- `web_search = &quot;disabled&quot;` to remove the tool
+
+To learn more, check out the [configuration documentation](/codex/config-basic).</content:encoded></item><item><title>Team Config for shared configuration</title><link>https://developers.openai.com/codex/changelog/#codex-2026-01-23</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-01-23</guid><description>Team Config for shared configuration</description><pubDate>Fri, 23 Jan 2026 00:00:00 GMT</pubDate><content:encoded># Team Config for shared configuration
+
+Team Config groups the files teams use to standardize Codex across repositories and machines. Use it to share:
+
+- `config.toml` defaults
+- `rules/` for command controls outside the sandbox
+- `skills/` for reusable workflows
+
+Codex loads these layers from `.codex/` folders in the current working directory, parent folders, and the repo root, plus user (`~/.codex/`) and system (`/etc/codex/`) locations. Higher-precedence locations override lower-precedence ones.
+
+Admins can still enforce constraints with `requirements.toml`, which overrides defaults regardless of location.
+
+Learn more in [Team Config](/codex/enterprise/admin-setup#team-config).</content:encoded></item><item><title>Custom prompts deprecated</title><link>https://developers.openai.com/codex/changelog/#codex-2026-01-22</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-01-22</guid><description>Custom prompts deprecated</description><pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate><content:encoded># Custom prompts deprecated
+
+Custom prompts are now deprecated. Use [skills](/codex/skills) for reusable instructions and workflows instead.</content:encoded></item><item><title>GPT-5.2-Codex API availability</title><link>https://developers.openai.com/codex/changelog/#codex-2026-01-14</link><guid>https://developers.openai.com/codex/changelog/#codex-2026-01-14</guid><description>GPT-5.2-Codex API availability</description><pubDate>Wed, 14 Jan 2026 00:00:00 GMT</pubDate><content:encoded># GPT-5.2-Codex API availability
+
+GPT-5.2-Codex is now available in the API and for users who sign into Codex with the API.
+
+To learn more about using GPT-5.2-Codex check out our [API documentation](https://platform.openai.com/docs/models/gpt-5.2-codex).</content:encoded></item><item><title>Agent skills in Codex</title><link>https://developers.openai.com/codex/changelog/#codex-2025-12-19</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-12-19</guid><description>Agent skills in Codex</description><pubDate>Fri, 19 Dec 2025 00:00:00 GMT</pubDate><content:encoded># Agent skills in Codex
+
+Codex now supports **agent skills**: reusable bundles of instructions (plus optional scripts and resources) that help Codex reliably complete specific tasks.
+
+Skills are available in both the Codex CLI and IDE extensions.
+
+You can invoke a skill explicitly by typing `$skill-name` (for example, `$skill-installer` or the experimental `$create-plan` skill after installing it), or let Codex select a skill automatically based on your prompt.
+
+Learn more in the [skills documentation](/codex/skills).
+
+&lt;div class=&quot;not-prose my-2 mb-4 grid gap-4 lg:grid-cols-2&quot;&gt;
+  &lt;div&gt;
+    &lt;img
+      src=&quot;/images/codex/skills/skills-selector-cli-light.webp&quot;
+      alt=&quot;&quot;
+      class=&quot;block w-full lg:h-64 rounded-lg border border-default my-0 object-contain bg-[#F0F1F5] dark:hidden&quot;
+    /&gt;
+    &lt;img
+      src=&quot;/images/codex/skills/skills-selector-cli-dark.webp&quot;
+      alt=&quot;&quot;
+      class=&quot;hidden w-full lg:h-64 rounded-lg border border-default my-0 object-contain bg-[#1E1E2E] dark:block&quot;
+    /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;img
+      src=&quot;/images/codex/skills/skills-selector-ide-light.webp&quot;
+      alt=&quot;&quot;
+      class=&quot;block w-full lg:h-64 rounded-lg border border-default my-0 object-contain bg-[#E8E9ED] dark:hidden&quot;
+    /&gt;
+    &lt;img
+      src=&quot;/images/codex/skills/skills-selector-ide-dark.webp&quot;
+      alt=&quot;&quot;
+      class=&quot;hidden w-full lg:h-64 rounded-lg border border-default my-0 object-contain bg-[#181824] dark:block&quot;
+    /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+#### Folder-based standard (agentskills.io)
+
+Following the open [agent skills specification](https://agentskills.io/specification), a skill is a folder with a required `SKILL.md` and optional supporting files:
+
+```text
+my-skill/
+  SKILL.md       # Required: instructions + metadata
+  scripts/       # Optional: executable code
+  references/    # Optional: documentation
+  assets/        # Optional: templates, resources
+```
+
+#### Install skills per-user or per-repo
+
+You can install skills for just yourself in `~/.codex/skills`, or for everyone on a project by checking them into `.codex/skills` in the repository.
+
+Codex also ships with a few built-in system skills to get started, including `$skill-creator` and `$skill-installer`. The `$create-plan` skill is experimental and needs to be installed (for example: `$skill-installer install the create-plan skill from the .experimental folder`).
+
+#### Curated skills directory
+
+Codex ships with a [small curated set of skills](https://github.com/openai/skills) inspired by popular workflows at OpenAI. Install them with `$skill-installer`, and expect more over time.</content:encoded></item><item><title>Introducing GPT-5.2-Codex</title><link>https://developers.openai.com/codex/changelog/#codex-2025-12-18</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-12-18</guid><description>Introducing GPT-5.2-Codex</description><pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5.2-Codex
+
+[Today we are releasing GPT-5.2-Codex](https://openai.com/index/gpt-5-2-codex), the most advanced agentic coding model yet for complex, real-world software engineering.
+
+GPT-5.2-Codex is a version of [GPT-5.2](https://openai.com/index/introducing-gpt-5-2/) further optimized for agentic coding in Codex, including improvements on long-horizon work through context compaction, stronger performance on large code changes like refactors and migrations, improved performance in Windows environments, and significantly stronger cybersecurity capabilities.
+
+Starting today, the CLI and IDE Extension will default to `gpt-5.2-codex` for users who are signed in with ChatGPT. API access for the model will come soon.
+
+If you have a model specified in your [`config.toml` configuration file](/codex/local-config), you can instead try out `gpt-5.2-codex` for a new Codex CLI session using:
+
+```bash
+codex --model gpt-5.2-codex
+```
+
+You can also use the `/model` slash command in the CLI. In the Codex IDE Extension you can select GPT-5.2-Codex from the dropdown menu.
+
+If you want to switch for all sessions, you can change your default model to `gpt-5.2-codex` by updating your `config.toml` [configuration file](/codex/local-config):
+
+```toml
+model = &quot;gpt-5.2-codex”
+```</content:encoded></item><item><title>Introducing Codex for Linear</title><link>https://developers.openai.com/codex/changelog/#codex-2025-12-04</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-12-04</guid><description>Introducing Codex for Linear</description><pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate><content:encoded># Introducing Codex for Linear
+
+Assign or mention @Codex in an issue to kick-off a Codex cloud task. As Codex works, it posts updates back to Linear, providing a link to the completed task so you can review, open a PR, or keep working.
+
+![Screenshot of a successful Codex task started in Linear](/images/codex/integrations/linear-codex-example.png)
+
+To learn more about how to connect Codex to Linear both locally through MCP and through the new integration, check out the [Codex for Linear documentation](/codex/integrations/linear).</content:encoded></item><item><title>Usage and credits fixes</title><link>https://developers.openai.com/codex/changelog/#codex-2025-11-24</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-11-24</guid><description>Usage and credits fixes</description><pubDate>Mon, 24 Nov 2025 00:00:00 GMT</pubDate><content:encoded># Usage and credits fixes
+
+Minor updates to address a few issues with Codex usage and credits:
+
+- Adjusted all usage dashboards to show &quot;limits remaining&quot; for consistency. The CLI previously displayed &quot;limits used.&quot;
+- Fixed an issue preventing users from buying credits if their ChatGPT subscription was purchased via iOS or Google Play.
+- Fixed an issue where the CLI could display stale usage information; it now refreshes without needing to send a message first.
+- Optimized the backend to help smooth out usage throughout the day, irrespective of overall Codex load or how traffic is routed. Before, users could get unlucky and hit a few cache misses in a row, leading to much less usage.</content:encoded></item><item><title>Introducing GPT-5.1-Codex-Max</title><link>https://developers.openai.com/codex/changelog/#codex-2025-11-18</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-11-18</guid><description>Introducing GPT-5.1-Codex-Max</description><pubDate>Tue, 18 Nov 2025 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5.1-Codex-Max
+
+[Today we are releasing GPT-5.1-Codex-Max](https://openai.com/index/gpt-5-1-codex-max), our new frontier agentic coding model.
+
+GPT‑5.1-Codex-Max is built on an update to our foundational reasoning model, which is trained on agentic tasks across software engineering, math, research, and more. GPT‑5.1-Codex-Max is faster, more intelligent, and more token-efficient at every stage of the development cycle–and a new step towards becoming a reliable coding partner.
+
+Starting today, the CLI and IDE Extension will default to `gpt-5.1-codex-max` for users that are signed in with ChatGPT. API access for the model will come soon.
+
+For non-latency-sensitive tasks, we’ve also added a new Extra High (`xhigh`) reasoning effort, which lets the model think for an even longer period of time for a better answer. We still recommend medium as your daily driver for most tasks.
+
+If you have a model specified in your [`config.toml` configuration file](/codex/local-config), you can instead try out `gpt-5.1-codex-max` for a new Codex CLI session using:
+
+```bash
+codex --model gpt-5.1-codex-max
+```
+
+You can also use the `/model` slash command in the CLI. In the Codex IDE Extension you can select GPT-5.1-Codex from the dropdown menu.
+
+If you want to switch for all sessions, you can change your default model to `gpt-5.1-codex-max` by updating your `config.toml` [configuration file](/codex/local-config):
+
+```toml
+model = &quot;gpt-5.1-codex-max”
+```</content:encoded></item><item><title>Introducing GPT-5.1-Codex and GPT-5.1-Codex-Mini</title><link>https://developers.openai.com/codex/changelog/#codex-2025-11-13</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-11-13</guid><description>Introducing GPT-5.1-Codex and GPT-5.1-Codex-Mini</description><pubDate>Thu, 13 Nov 2025 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5.1-Codex and GPT-5.1-Codex-Mini
+
+Along with the [GPT-5.1 launch in the API](https://openai.com/index/gpt-5-1-for-developers/), we are introducing new `gpt-5.1-codex-mini` and `gpt-5.1-codex` model options in Codex, a version of GPT-5.1 optimized for long-running, agentic coding tasks and use in coding agent harnesses in Codex or Codex-like harnesses.
+
+Starting today, the CLI and IDE Extension will default to `gpt-5.1-codex` on macOS and Linux and `gpt-5.1` on Windows.
+
+If you have a model specified in your [`config.toml` configuration file](/codex/local-config), you can instead try out `gpt-5.1-codex` for a new Codex CLI session using:
+
+```bash
+codex --model gpt-5.1-codex
+```
+
+You can also use the `/model` slash command in the CLI. In the Codex IDE Extension you can select GPT-5.1-Codex from the dropdown menu.
+
+If you want to switch for all sessions, you can change your default model to `gpt-5.1-codex` by updating your `config.toml` [configuration file](/codex/local-config):
+
+```toml
+model = &quot;gpt-5.1-codex”
+```</content:encoded></item><item><title>Introducing GPT-5-Codex-Mini</title><link>https://developers.openai.com/codex/changelog/#codex-2025-11-07</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-11-07</guid><description>Introducing GPT-5-Codex-Mini</description><pubDate>Fri, 07 Nov 2025 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5-Codex-Mini
+
+Today we are introducing a new `gpt-5-codex-mini` model option to Codex CLI and the IDE Extension. The model is a smaller, more cost-effective, but less capable version of `gpt-5-codex` that provides approximately 4x more usage as part of your ChatGPT subscription.
+
+Starting today, the CLI and IDE Extension will automatically suggest switching to `gpt-5-codex-mini` when you reach 90% of your 5-hour usage limit, to help you work longer without interruptions.
+
+You can try the model for a new Codex CLI session using:
+
+```bash
+codex --model gpt-5-codex-mini
+```
+
+You can also use the `/model` slash command in the CLI. In the Codex IDE Extension you can select GPT-5-Codex-Mini from the dropdown menu.
+
+Alternatively, you can change your default model to `gpt-5-codex-mini` by updating your `config.toml` [configuration file](/codex/local-config):
+
+```toml
+model = &quot;gpt-5-codex-mini”
+```</content:encoded></item><item><title>GPT-5-Codex model update</title><link>https://developers.openai.com/codex/changelog/#codex-2025-11-06</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-11-06</guid><description>GPT-5-Codex model update</description><pubDate>Thu, 06 Nov 2025 00:00:00 GMT</pubDate><content:encoded># GPT-5-Codex model update
+
+We&apos;ve shipped a minor update to GPT-5-Codex:
+
+- More reliable file edits with `apply_patch`.
+- Fewer destructive actions such as `git reset`.
+- More collaborative behavior when encountering user edits in files.
+- 3% more efficient in time and usage.</content:encoded></item><item><title>Credits on ChatGPT Pro and Plus</title><link>https://developers.openai.com/codex/changelog/#codex-2025-10-30</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-10-30</guid><description>Credits on ChatGPT Pro and Plus</description><pubDate>Thu, 30 Oct 2025 00:00:00 GMT</pubDate><content:encoded># Credits on ChatGPT Pro and Plus
+
+Codex users on ChatGPT Plus and Pro can now use on-demand credits for more Codex usage beyond what&apos;s included in your plan. [Learn more.](/codex/pricing)</content:encoded></item><item><title>Tag @Codex on GitHub Issues and PRs</title><link>https://developers.openai.com/codex/changelog/#codex-2025-10-22</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-10-22</guid><description>Tag @Codex on GitHub Issues and PRs</description><pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate><content:encoded># Tag @Codex on GitHub Issues and PRs
+
+You can now tag `@codex` on a teammate&apos;s pull request to ask clarifying questions, request a follow-up, or ask Codex to make changes. GitHub Issues now also support `@codex` mentions, so you can kick off tasks from any issue, without leaving your workflow.
+
+![Codex responding to a GitHub pull request and issue after an @Codex mention.](/images/codex/integrations/github-example.png)</content:encoded></item><item><title>Codex is now GA</title><link>https://developers.openai.com/codex/changelog/#codex-2025-10-06</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-10-06</guid><description>Codex is now GA</description><pubDate>Mon, 06 Oct 2025 00:00:00 GMT</pubDate><content:encoded># Codex is now GA
+
+Codex is now generally available with 3 new features — @Codex in Slack, Codex SDK, and new admin tools.
+
+#### @Codex in Slack
+
+![](/images/codex/integrations/slack-example.png)
+
+You can now questions and assign tasks to Codex directly from Slack. See the [Slack guide](/codex/integrations/slack) to get started.
+
+#### Codex SDK
+
+Integrate the same agent that powers the Codex CLI inside your own tools and workflows with the Codex SDK in Typescript. With the new Codex GitHub Action, you can easily add Codex to CI/CD workflows. See the [Codex SDK guide](/codex/sdk) to get started.
+
+```ts
+
+
+const agent = new Codex();
+const thread = await agent.startThread();
+
+const result = await thread.run(&quot;Explore this repo&quot;);
+console.log(result);
+
+const result2 = await thread.run(&quot;Propose changes&quot;);
+console.log(result2);
+```
+
+#### New admin controls and analytics
+
+![](/images/codex/enterprise/analytics.png)
+
+ChatGPT workspace admins can now edit or delete Codex Cloud environments. With managed config files, they can set safe defaults for CLI and IDE usage and monitor how Codex uses commands locally. New analytics dashboards help you track Codex usage and code review feedback. Learn more in the [enterprise admin guide.](/codex/enterprise/admin-setup)
+
+#### Availability and pricing updates
+
+The Slack integration and Codex SDK are available to developers on ChatGPT Plus, Pro, Business, Edu, and Enterprise plans starting today, while the new admin features will be available to Business, Edu, and Enterprise.
+Beginning October 20, Codex Cloud tasks will count toward your Codex usage. Review the [Codex pricing guide](/codex/pricing) for plan-specific details.</content:encoded></item><item><title>GPT-5-Codex in the API</title><link>https://developers.openai.com/codex/changelog/#codex-2025-09-23</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-09-23</guid><description>GPT-5-Codex in the API</description><pubDate>Tue, 23 Sep 2025 00:00:00 GMT</pubDate><content:encoded># GPT-5-Codex in the API
+
+GPT-5-Codex is now available in the Responses API, and you can also use it with your API Key in the Codex CLI.
+We plan on regularly updating this model snapshot.
+It is available at the same price as GPT-5. You can learn more about pricing and rate limits for this model on our [model page](https://platform.openai.com/docs/models/gpt-5-codex).</content:encoded></item><item><title>Introducing GPT-5-Codex</title><link>https://developers.openai.com/codex/changelog/#codex-2025-09-15</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-09-15</guid><description>Introducing GPT-5-Codex</description><pubDate>Mon, 15 Sep 2025 00:00:00 GMT</pubDate><content:encoded># Introducing GPT-5-Codex
+
+#### New model: GPT-5-Codex
+
+![codex-switch-model](https://cdn.openai.com/devhub/docs/codex-switch-model.png)
+
+GPT-5-Codex is a version of GPT-5 further optimized for agentic coding in Codex.
+It&apos;s available in the IDE extension and CLI when you sign in with your ChatGPT account.
+It also powers the cloud agent and Code Review in GitHub.
+
+To learn more about GPT-5-Codex and how it performs compared to GPT-5 on software engineering tasks, see our [announcement blog post](https://openai.com/index/introducing-upgrades-to-codex/).
+
+#### Image outputs
+
+![codex-image-outputs](https://cdn.openai.com/devhub/docs/codex-image-output.png)
+
+When working in the cloud on front-end engineering tasks, GPT-5-Codex can now display screenshots of the UI in Codex web for you to review. With image output, you can iterate on the design without needing to check out the branch locally.
+
+#### New in Codex CLI
+
+- You can now resume sessions where you left off with `codex resume`.
+- Context compaction automatically summarizes the session as it approaches the context window limit.
+
+Learn more in the [latest release notes](https://github.com/openai/codex/releases/tag/rust-v0.36.0)</content:encoded></item><item><title>Late August update</title><link>https://developers.openai.com/codex/changelog/#codex-2025-08-27</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-08-27</guid><description>Late August update</description><pubDate>Wed, 27 Aug 2025 00:00:00 GMT</pubDate><content:encoded># Late August update
+
+#### IDE extension (Compatible with VS Code, Cursor, Windsurf)
+
+![](/images/codex/changelog/local_task.gif)
+
+Codex now runs in your IDE with an interactive UI for fast local iteration. Easily switch between modes and reasoning efforts.
+
+#### Sign in with ChatGPT (IDE &amp; CLI)
+
+![](/images/codex/changelog/sign-in-with-chat.gif)
+
+One-click authentication that removes API keys and uses ChatGPT Enterprise credits.
+
+#### Move work between local ↔ cloud
+
+![](/images/codex/changelog/cloud_task.gif)
+
+Hand off tasks to Codex web from the IDE with the ability to apply changes locally so you can delegate jobs without leaving your editor.
+
+#### Code Reviews
+
+![](/images/codex/changelog/codex_review.gif)
+
+Codex goes beyond static analysis. It checks a PR against its intent, reasons across the codebase and dependencies, and can run code to validate the behavior of changes.</content:encoded></item><item><title>Mid August update</title><link>https://developers.openai.com/codex/changelog/#codex-2025-08-21</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-08-21</guid><description>Mid August update</description><pubDate>Thu, 21 Aug 2025 00:00:00 GMT</pubDate><content:encoded># Mid August update
+
+#### Image inputs
+
+![](/images/codex/changelog/image_input.png)
+
+You can now attach images to your prompts in Codex web. This is great for asking Codex to implement frontend changes or follow up on whiteboarding sessions.
+
+#### Container caching
+
+![](/images/codex/changelog/container_caching.png)
+
+Codex now caches containers to start new tasks and followups 90% faster, dropping the median start time from 48 seconds to 5 seconds. You can optionally configure a maintenance script to update the environment from its cached state to prepare for new tasks. See the docs for more.
+
+#### Automatic environment setup
+
+Now, environments without manual setup scripts automatically run the standard installation commands for common package managers like yarn, pnpm, npm, go mod, gradle, pip, poetry, uv, and cargo. This reduces test failures for new environments by 40%.</content:encoded></item><item><title>Best of N</title><link>https://developers.openai.com/codex/changelog/#codex-2025-06-13</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-06-13</guid><description>Added some keyboard shortcuts and a page to explore them. Open it by pressing ⌘-/ on macOS and Ctrl+/ on other platforms. Added a “branch” query parameter in addition to the existing “environment”, “prompt” and “tab=archived” parameters. Added a loading indicator when downloading a repo during container setup. Added support for cancelling tasks. Fixed issues causing tasks to fail during setup. Fixed issues running followups in environments where the setup script changes files that are gitignored. Improved how the agent understands and reacts to network access restrictions. Increased the update rate of text describing what Codex is doing. Increased the limit for setup script duration to 20 minutes for Pro and Business users. Polished code diffs: You can now option-click a code diff header to expand/collapse all of them.</description><pubDate>Fri, 13 Jun 2025 00:00:00 GMT</pubDate><content:encoded># Best of N
+
+![](/images/codex/changelog/best-of-n.png)
+
+Codex can now generate multiple responses simultaneously for a single task, helping you quickly explore possible solutions to pick the best approach.
+
+## Fixes &amp; improvements
+- Added some keyboard shortcuts and a page to explore them. Open it by pressing ⌘-/ on macOS and Ctrl+/ on other platforms.
+- Added a “branch” query parameter in addition to the existing “environment”, “prompt” and “tab=archived” parameters.
+- Added a loading indicator when downloading a repo during container setup.
+- Added support for cancelling tasks.
+- Fixed issues causing tasks to fail during setup.
+- Fixed issues running followups in environments where the setup script changes files that are gitignored.
+- Improved how the agent understands and reacts to network access restrictions.
+- Increased the update rate of text describing what Codex is doing.
+- Increased the limit for setup script duration to 20 minutes for Pro and Business users.
+- Polished code diffs: You can now option-click a code diff header to expand/collapse all of them.</content:encoded></item><item><title>June update</title><link>https://developers.openai.com/codex/changelog/#codex-2025-06-03</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-06-03</guid><description>Added a link to this changelog from the profile menu. Added support for binary files: When applying patches, all file operations are supported. When using PRs, only deleting or renaming binary files is supported for now. Fixed an issue on iOS where follow up tasks where shown duplicated in the task list. Fixed an issue on iOS where pull request statuses were out of date. Fixed an issue with follow ups where the environments were incorrectly started with the state from the first turn, rather than the most recent state. Fixed internationalization of task events and logs. Improved error messages for setup scripts. Increased the limit on task diffs from 1 MB to 5 MB. Increased the limit for setup script duration from 5 to 10 minutes. Polished GitHub connection flow. Re-enabled Live Activities on iOS after resolving an issue with missed notifications. Removed the mandatory two-factor authentication requirement for users using SSO or social logins.</description><pubDate>Tue, 03 Jun 2025 00:00:00 GMT</pubDate><content:encoded># June update
+
+#### Agent internet access
+
+![](/images/codex/changelog/internet_access.png)
+
+Now you can give Codex access to the internet during task execution to install dependencies, upgrade packages, run tests that need external resources, and more.
+
+Internet access is off by default. Plus, Pro, and Business users can enable it for specific environments, with granular control of which domains and HTTP methods Codex can access. Internet access for Enterprise users is coming soon.
+
+Learn more about usage and risks in the [docs](/codex/cloud/agent-internet).
+
+#### Update existing PRs
+
+![](/images/codex/changelog/update_prs.png)
+
+Now you can update existing pull requests when following up on a task.
+
+#### Voice dictation
+
+![](/images/codex/changelog/voice_dictation.gif)
+
+Now you can dictate tasks to Codex.
+
+## Fixes &amp; improvements
+- Added a link to this changelog from the profile menu.
+- Added support for binary files: When applying patches, all file operations are supported. When using PRs, only deleting or renaming binary files is supported for now.
+- Fixed an issue on iOS where follow up tasks where shown duplicated in the task list.
+- Fixed an issue on iOS where pull request statuses were out of date.
+- Fixed an issue with follow ups where the environments were incorrectly started with the state from the first turn, rather than the most recent state.
+- Fixed internationalization of task events and logs.
+- Improved error messages for setup scripts.
+- Increased the limit on task diffs from 1 MB to 5 MB.
+- Increased the limit for setup script duration from 5 to 10 minutes.
+- Polished GitHub connection flow.
+- Re-enabled Live Activities on iOS after resolving an issue with missed notifications.
+- Removed the mandatory two-factor authentication requirement for users using SSO or social logins.</content:encoded></item><item><title>Reworked environment page</title><link>https://developers.openai.com/codex/changelog/#codex-2025-05-22</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-05-22</guid><description>Added a button to retry failed tasks Added indicators to show that the agent runs without network access after setup Added options to copy git patches after pushing a PR Added support for unicode branch names Fixed a bug where secrets were not piped to the setup script Fixed creating branches when there’s a branch name conflict. Fixed rendering diffs with multi-character emojis. Improved error messages when starting tasks, running setup scripts, pushing PRs, or disconnected from GitHub to be more specific and indicate how to resolve the error. Improved onboarding for teams. Polished how new tasks look while loading. Polished the followup composer. Reduced GitHub disconnects by 90%. Reduced PR creation latency by 35%. Reduced tool call latency by 50%. Reduced task completion latency by 20%. Started setting page titles to task names so Codex tabs are easier to tell apart. Tweaked the system prompt so that agent knows it’s working without network, and can suggest that the user set up dependencies. Updated the docs.</description><pubDate>Thu, 22 May 2025 00:00:00 GMT</pubDate><content:encoded># Reworked environment page
+
+It&apos;s now easier and faster to set up code execution.
+
+![](/images/codex/changelog/environment_setup.png)
+
+## Fixes &amp; improvements
+- Added a button to retry failed tasks
+- Added indicators to show that the agent runs without network access after setup
+- Added options to copy git patches after pushing a PR
+- Added support for unicode branch names
+- Fixed a bug where secrets were not piped to the setup script
+- Fixed creating branches when there’s a branch name conflict.
+- Fixed rendering diffs with multi-character emojis.
+- Improved error messages when starting tasks, running setup scripts, pushing PRs, or disconnected from GitHub to be more specific and indicate how to resolve the error.
+- Improved onboarding for teams.
+- Polished how new tasks look while loading.
+- Polished the followup composer.
+- Reduced GitHub disconnects by 90%.
+- Reduced PR creation latency by 35%.
+- Reduced tool call latency by 50%.
+- Reduced task completion latency by 20%.
+- Started setting page titles to task names so Codex tabs are easier to tell apart.
+- Tweaked the system prompt so that agent knows it’s working without network, and can suggest that the user set up dependencies.
+- Updated the docs.</content:encoded></item><item><title>Codex in the ChatGPT iOS app</title><link>https://developers.openai.com/codex/changelog/#codex-2025-05-19</link><guid>https://developers.openai.com/codex/changelog/#codex-2025-05-19</guid><description>Codex in the ChatGPT iOS app</description><pubDate>Mon, 19 May 2025 00:00:00 GMT</pubDate><content:encoded># Codex in the ChatGPT iOS app
+
+Start tasks, view diffs, and push PRs—while you&apos;re away from your desk.
+
+![](/images/codex/changelog/mobile_support.png)</content:encoded></item></channel></rss>
