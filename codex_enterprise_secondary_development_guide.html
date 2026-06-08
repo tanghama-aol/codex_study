@@ -1,0 +1,1704 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex 企业级 Agent 平台二次开发指南</title>
+  <style>
+:root {
+  --ink: #1d2630;
+  --muted: #5f6d78;
+  --paper: #f6f5ef;
+  --surface: #ffffff;
+  --panel: #eef1ee;
+  --line: #d2d8d7;
+  --charcoal: #20272e;
+  --charcoal-2: #2d3841;
+  --teal: #0c867e;
+  --teal-soft: #dff3f0;
+  --copper: #bd6a2d;
+  --copper-soft: #f7eadc;
+  --blue: #2f66a8;
+  --blue-soft: #e3edf8;
+  --green: #3f8f56;
+  --green-soft: #e5f2e8;
+  --red: #b83d3d;
+  --red-soft: #f8e5e4;
+  --violet: #7058a7;
+  --gold: #b78b2d;
+  --shadow: 0 18px 48px rgba(31, 39, 46, 0.12);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, rgba(32,39,46,0.035) 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(rgba(32,39,46,0.025) 1px, transparent 1px) 0 0 / 34px 34px,
+    var(--paper);
+  font-family: "Microsoft YaHei UI", "Noto Sans SC", "PingFang SC", "Segoe UI", sans-serif;
+  line-height: 1.68;
+  letter-spacing: 0;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+code, pre { font-family: "Cascadia Code", "Consolas", "SFMono-Regular", monospace; }
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+}
+.progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--copper), var(--blue));
+}
+
+.layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 28px 22px;
+  overflow: auto;
+  color: #edf3f3;
+  background: linear-gradient(180deg, var(--charcoal), #192026);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.brand-mark {
+  width: 54px;
+  height: 54px;
+  margin-bottom: 18px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--teal);
+  font-family: "Bahnschrift", "Microsoft YaHei UI", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+.sidebar h1 {
+  margin: 0;
+  font-family: "Bahnschrift", "Microsoft YaHei UI", sans-serif;
+  font-size: 24px;
+  line-height: 1.18;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+.sidebar h1 span { display: block; }
+.sidebar .subtitle {
+  margin: 12px 0 22px;
+  color: #aebcc4;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.search {
+  width: 100%;
+  height: 40px;
+  margin: 6px 0 16px;
+  padding: 0 12px;
+  color: #f8fbfb;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  outline: none;
+}
+.search::placeholder { color: #a8b7bd; }
+.toc-count {
+  margin: 0 0 12px;
+  color: #9faeb5;
+  font-size: 12px;
+}
+.toc {
+  display: grid;
+  gap: 4px;
+}
+.toc-link {
+  display: block;
+  padding: 9px 10px;
+  color: #cbd6da;
+  border-left: 3px solid transparent;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.toc-link.sub {
+  padding-left: 22px;
+  color: #9fb0b8;
+  font-size: 12px;
+}
+.toc-link:hover,
+.toc-link.active {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border-left-color: var(--teal);
+}
+
+.content {
+  min-width: 0;
+  max-width: 100%;
+  padding: 34px clamp(24px, 5vw, 72px) 72px;
+  overflow-x: clip;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.crumb {
+  color: var(--muted);
+  font-size: 14px;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.btn {
+  min-height: 38px;
+  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 20px rgba(31,39,46,0.06);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: normal;
+}
+.btn.primary {
+  color: #fff;
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+}
+.hero {
+  position: relative;
+  padding: 34px;
+  max-width: 100%;
+  color: #fff;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(135deg, #20272e, #34424c);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  right: 34px;
+  top: 34px;
+  width: 188px;
+  height: 188px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background:
+    linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.20) 48%, rgba(255,255,255,0.20) 52%, transparent 52%),
+    linear-gradient(transparent 48%, rgba(255,255,255,0.20) 48%, rgba(255,255,255,0.20) 52%, transparent 52%);
+  opacity: .55;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 3px 10px;
+  color: #dff3f0;
+  background: rgba(12,134,126,0.24);
+  border: 1px solid rgba(223,243,240,0.18);
+  font-size: 13px;
+  font-weight: 700;
+}
+.hero h2 {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  margin: 20px 0 14px;
+  font-family: "Bahnschrift", "Microsoft YaHei UI", sans-serif;
+  font-size: 42px;
+  line-height: 1.12;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+.hero p {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0;
+  color: #d9e2e4;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+.meta-strip {
+  position: relative;
+  z-index: 1;
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.meta-card {
+  min-height: 82px;
+  padding: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.meta-card b {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font-size: 18px;
+}
+.meta-card span {
+  color: #b8c7cd;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.section-title {
+  margin: 46px 0 18px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+}
+.section-title h2 {
+  margin: 0;
+  font-family: "Bahnschrift", "Microsoft YaHei UI", sans-serif;
+  font-size: 30px;
+  line-height: 1.2;
+}
+.section-title p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.summary-card {
+  padding: 22px;
+  min-height: 174px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px rgba(31,39,46,0.08);
+}
+.summary-card::before {
+  content: attr(data-kicker);
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 4px 9px;
+  color: var(--accent);
+  background: var(--tint);
+  font-size: 12px;
+  font-weight: 800;
+}
+.summary-card h3 {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 22px;
+  line-height: 1.2;
+}
+.summary-card p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.architecture-visual {
+  position: relative;
+  margin: 20px 0 26px;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) 28px minmax(190px, 1fr) 28px minmax(220px, 1fr) 28px minmax(180px, 1fr);
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.arch-lane, .arch-stack {
+  display: grid;
+  gap: 8px;
+}
+.lane-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+.arch-node {
+  padding: 10px 12px;
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.28;
+}
+.arch-node small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+.gateway { color: #fff; background: var(--teal); border-color: var(--teal); }
+.server { background: var(--blue-soft); border-color: #acc6e6; }
+.core { background: var(--copper-soft); border-color: #e0bd9d; }
+.arch-arrow {
+  color: var(--copper);
+  font-size: 22px;
+  font-weight: 900;
+  text-align: center;
+}
+.control-plane {
+  position: absolute;
+  right: 22px;
+  bottom: -18px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  background: var(--charcoal);
+  box-shadow: 0 12px 28px rgba(31,39,46,0.18);
+}
+.control-plane span {
+  margin-right: 4px;
+  color: #cad6da;
+  font-size: 12px;
+  font-weight: 800;
+}
+.control-plane b {
+  padding: 3px 7px;
+  color: #fff;
+  background: rgba(255,255,255,0.10);
+  font-size: 12px;
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.matrix-row {
+  display: grid;
+  grid-template-columns: 150px repeat(3, minmax(0, 1fr));
+}
+.matrix-row > div {
+  padding: 15px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+.matrix-row > div:last-child { border-right: none; }
+.matrix-head > div {
+  color: #fff;
+  background: var(--charcoal);
+  font-weight: 800;
+}
+.matrix-label {
+  color: var(--ink);
+  background: var(--panel);
+  font-weight: 800;
+}
+
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.phase {
+  position: relative;
+  padding: 18px;
+  min-height: 176px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px rgba(31,39,46,0.08);
+}
+.phase b {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--accent);
+  font-size: 14px;
+}
+.phase h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+.phase p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.doc-shell {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 22px;
+  align-items: start;
+}
+.guide-content {
+  min-width: 0;
+  padding: 34px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.guide-content h2 {
+  margin: 42px 0 14px;
+  padding-top: 8px;
+  font-family: "Bahnschrift", "Microsoft YaHei UI", sans-serif;
+  font-size: 29px;
+  line-height: 1.24;
+  letter-spacing: 0;
+}
+.guide-content h2:first-child { margin-top: 0; }
+.guide-content h3 {
+  margin: 30px 0 10px;
+  color: var(--teal);
+  font-size: 21px;
+  line-height: 1.3;
+}
+.guide-content p, .guide-content li {
+  color: var(--ink);
+  font-size: 16px;
+}
+.guide-content blockquote {
+  margin: 18px 0;
+  padding: 16px 18px;
+  color: var(--ink);
+  background: var(--teal-soft);
+  border-left: 5px solid var(--teal);
+}
+.guide-content hr {
+  margin: 36px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.guide-content a {
+  color: var(--blue);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(47,102,168,0.25);
+}
+.guide-content code {
+  padding: 2px 5px;
+  color: #0d5f58;
+  background: var(--teal-soft);
+  font-size: 0.92em;
+}
+.guide-content pre {
+  position: relative;
+  margin: 18px 0;
+  padding: 42px 18px 18px;
+  overflow: auto;
+  color: #e8f2f1;
+  background: #20272e;
+  border: 1px solid #384651;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.guide-content pre::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 11px;
+  left: 18px;
+  color: #8fb9b5;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.guide-content pre code {
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1.62;
+}
+.copy-code {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  min-height: 28px;
+  padding: 4px 9px;
+  color: #e8f2f1;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.16);
+  cursor: pointer;
+  font-size: 12px;
+}
+.copy-code:hover { background: rgba(255,255,255,0.18); }
+.table-wrap {
+  margin: 18px 0;
+  overflow: auto;
+  border: 1px solid var(--line);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+th, td {
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  font-size: 14px;
+}
+th {
+  color: #fff;
+  background: var(--charcoal);
+  font-weight: 800;
+}
+tr:last-child td { border-bottom: none; }
+td:last-child, th:last-child { border-right: none; }
+
+.insight-rail {
+  position: sticky;
+  top: 28px;
+  display: grid;
+  gap: 14px;
+}
+.rail-card {
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px rgba(31,39,46,0.08);
+}
+.rail-card h3 {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 18px;
+}
+.rail-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.rail-card ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+.rail-card li {
+  margin: 5px 0;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+@media (max-width: 1180px) {
+  .layout { grid-template-columns: 250px minmax(0, 1fr); }
+  .meta-strip, .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .architecture-visual { grid-template-columns: 1fr; }
+  .arch-arrow { transform: rotate(90deg); }
+  .control-plane { position: static; margin-top: 8px; flex-wrap: wrap; }
+  .doc-shell { grid-template-columns: 1fr; }
+  .insight-rail { position: static; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 820px) {
+  html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+  .layout { display: block; }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    max-height: 520px;
+    overflow-x: hidden;
+  }
+  .sidebar * { max-width: 100%; min-width: 0; }
+  .sidebar h1 { font-size: 22px; word-break: break-all; }
+  .toc-link { overflow-wrap: anywhere; }
+  .content {
+    width: 100%;
+    max-width: 100vw;
+    padding: 22px 16px 48px;
+    overflow-x: hidden;
+  }
+  .topbar { align-items: stretch; flex-direction: column; }
+  .topbar, .actions { max-width: 100%; min-width: 0; overflow-x: hidden; }
+  .hero { padding: 24px; }
+  .hero, .summary-card, .phase, .architecture-visual, .guide-content, .rail-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .hero h2 {
+    max-width: 100%;
+    font-size: 28px;
+    line-height: 1.16;
+    word-break: break-all;
+  }
+  .hero p { max-width: 100%; word-break: break-word; }
+  .hero::after { display: none; }
+  .actions { width: 100%; flex-direction: column; }
+  .actions .btn { width: 100%; flex: 1 1 auto; min-width: 0; padding-left: 8px; padding-right: 8px; }
+  .section-title { align-items: flex-start; flex-direction: column; }
+  .section-title h2 { font-size: 27px; overflow-wrap: anywhere; }
+  .meta-strip, .summary-grid, .roadmap, .insight-rail { grid-template-columns: 1fr; }
+  .matrix { overflow-x: auto; }
+  .matrix-row { min-width: 780px; }
+  .guide-content { padding: 22px; }
+}
+</style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand-mark">Cx</div>
+      <h1><span>Codex 企业级 Agent 平台</span><span>二次开发指南</span></h1>
+      <p class="subtitle">基于 openai/codex 源码、app-server、Python SDK、插件、技能与 hooks 的企业落地说明。</p>
+      <input class="search" type="search" placeholder="过滤目录">
+      <p class="toc-count"></p>
+      <nav class="toc" aria-label="文档目录"><a class="toc-link toc-overview active" href="#overview">总览</a>
+<a class="toc-link" href="#目录">目录</a>
+<a class="toc-link" href="#第-1-章-codex-源码架构与二次开发边界">第 1 章 Codex 源码架构与二次开发边界</a>
+<a class="toc-link sub" href="#1.1-仓库结构">1.1 仓库结构</a>
+<a class="toc-link sub" href="#1.2-运行时主链路">1.2 运行时主链路</a>
+<a class="toc-link sub" href="#1.3-核心模块职责">1.3 核心模块职责</a>
+<a class="toc-link sub" href="#1.4-thread-turn-item">1.4 Thread / Turn / Item</a>
+<a class="toc-link" href="#第-2-章-企业级-agent-平台接入架构">第 2 章 企业级 Agent 平台接入架构</a>
+<a class="toc-link sub" href="#2.1-推荐接入方式">2.1 推荐接入方式</a>
+<a class="toc-link sub" href="#2.2-app-server-协议要点">2.2 app-server 协议要点</a>
+<a class="toc-link sub" href="#2.3-线程和-turn-调用流程">2.3 线程和 turn 调用流程</a>
+<a class="toc-link sub" href="#2.4-企业平台控制面">2.4 企业平台控制面</a>
+<a class="toc-link" href="#第-3-章-python-sdk-使用与平台封装示例">第 3 章 Python SDK 使用与平台封装示例</a>
+<a class="toc-link sub" href="#3.1-sdk-定位">3.1 SDK 定位</a>
+<a class="toc-link sub" href="#3.2-基础调用">3.2 基础调用</a>
+<a class="toc-link sub" href="#3.3-流式事件">3.3 流式事件</a>
+<a class="toc-link sub" href="#3.4-steering-与-interrupt">3.4 steering 与 interrupt</a>
+<a class="toc-link sub" href="#3.5-并发执行">3.5 并发执行</a>
+<a class="toc-link sub" href="#3.6-结构化输出">3.6 结构化输出</a>
+<a class="toc-link sub" href="#3.7-skillinput-与-mentioninput">3.7 SkillInput 与 MentionInput</a>
+<a class="toc-link" href="#第-4-章-插件开发-manifest-marketplace-mcp-与应用入口">第 4 章 插件开发：manifest、marketplace、MCP 与应用入口</a>
+<a class="toc-link sub" href="#4.1-插件是什么">4.1 插件是什么</a>
+<a class="toc-link sub" href="#4.2-推荐目录">4.2 推荐目录</a>
+<a class="toc-link sub" href="#4.3-plugin.json-示例">4.3 plugin.json 示例</a>
+<a class="toc-link sub" href="#4.4-marketplace.json-示例">4.4 marketplace.json 示例</a>
+<a class="toc-link sub" href="#4.5-插件中的-mcp">4.5 插件中的 MCP</a>
+<a class="toc-link sub" href="#4.6-插件开发流程">4.6 插件开发流程</a>
+<a class="toc-link" href="#第-5-章-技能开发-skill.md-资源组织与触发机制">第 5 章 技能开发：SKILL.md、资源组织与触发机制</a>
+<a class="toc-link sub" href="#5.1-技能是什么">5.1 技能是什么</a>
+<a class="toc-link sub" href="#5.2-技能目录规范">5.2 技能目录规范</a>
+<a class="toc-link sub" href="#5.3-触发机制">5.3 触发机制</a>
+<a class="toc-link sub" href="#5.4-references-与-scripts-设计">5.4 references 与 scripts 设计</a>
+<a class="toc-link sub" href="#5.5-通过-app-server-管理技能">5.5 通过 app-server 管理技能</a>
+<a class="toc-link" href="#第-6-章-hooks-与治理-审批-安全-审计和自动化拦截">第 6 章 Hooks 与治理：审批、安全、审计和自动化拦截</a>
+<a class="toc-link sub" href="#6.1-hook-适用场景">6.1 Hook 适用场景</a>
+<a class="toc-link sub" href="#6.2-hook-配置文件">6.2 Hook 配置文件</a>
+<a class="toc-link sub" href="#6.3-command-hook-输入输出">6.3 Command hook 输入输出</a>
+<a class="toc-link sub" href="#6.4-pretooluse-示例-阻断危险-bash">6.4 PreToolUse 示例：阻断危险 Bash</a>
+<a class="toc-link sub" href="#6.5-permissionrequest-示例-按平台策略拒绝">6.5 PermissionRequest 示例：按平台策略拒绝</a>
+<a class="toc-link sub" href="#6.6-posttooluse-示例-向上下文追加审计提示">6.6 PostToolUse 示例：向上下文追加审计提示</a>
+<a class="toc-link sub" href="#6.7-管理层配置与锁定">6.7 管理层配置与锁定</a>
+<a class="toc-link sub" href="#6.8-hooks-list-校验">6.8 hooks/list 校验</a>
+<a class="toc-link" href="#落地建议">落地建议</a>
+<a class="toc-link sub" href="#推荐-0-90-天路线">推荐 0-90 天路线</a>
+<a class="toc-link sub" href="#推荐最小可行架构">推荐最小可行架构</a>
+<a class="toc-link sub" href="#不建议的做法">不建议的做法</a>
+<a class="toc-link sub" href="#源码依据索引">源码依据索引</a></nav>
+    </aside>
+
+    <main class="content">
+      <div class="topbar">
+        <div class="crumb">企业架构 / 平台工程 / Agent 治理</div>
+        <div class="actions">
+          <a class="btn" href="codex_enterprise_secondary_development_guide.md">打开 Markdown</a>
+          <a class="btn primary" href="#full-guide">阅读完整指南</a>
+        </div>
+      </div>
+
+      <section class="hero" id="overview">
+        <span class="eyebrow">OpenAI Codex 二次开发</span>
+        <h2>面向企业级 Agent 平台的<br>工程化接入方案</h2>
+        <p>把 Codex 的代码理解、补丁生成、测试执行和审查能力，纳入统一入口、会话编排、权限策略、人工审批、审计追踪与外部系统连接。</p>
+        <div class="meta-strip">
+          <div class="meta-card"><b>6 章</b><span>源码架构、接入、SDK、插件、技能、Hooks 治理</span></div>
+          <div class="meta-card"><b>源码依据</b><span>D:\dev\github\codex</span></div>
+          <div class="meta-card"><b>当前 HEAD</b><span>0526cb56ac3501a02968010d03873993c319e290</span></div>
+          <div class="meta-card"><b>交付重点</b><span>性能、安全、多用户、多并发、多轮会话与 HITL</span></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="summary-title">
+        <div class="section-title">
+          <h2 id="summary-title">核心判断</h2>
+          <p>Codex 的平台价值不只是模型问答，而是把软件工程任务变成可治理、可验收、可回滚的执行闭环。</p>
+        </div>
+        <div class="summary-grid">
+          <article class="summary-card" data-kicker="执行层" style="--accent: var(--teal); --tint: var(--teal-soft);">
+            <h3>Codex Worker</h3>
+            <p>承接仓库理解、代码修改、测试运行、diff 输出、代码审查等研发自动化任务。</p>
+          </article>
+          <article class="summary-card" data-kicker="控制面" style="--accent: var(--copper); --tint: var(--copper-soft);">
+            <h3>企业平台</h3>
+            <p>负责身份、租户、任务状态机、队列调度、成本预算、审批、审计和产物管理。</p>
+          </article>
+          <article class="summary-card" data-kicker="治理线" style="--accent: var(--red); --tint: var(--red-soft);">
+            <h3>安全边界</h3>
+            <p>密钥不进入提示词，生产动作不直连，高风险工具强制审批，所有工具调用可追踪。</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="arch-title">
+        <div class="section-title">
+          <h2 id="arch-title">运行时架构</h2>
+          <p>围绕 app-server、SDK、插件、技能、hook、MCP 进行封装，避免直接改动模型调用主循环。</p>
+        </div>
+        
+<div class="architecture-visual" aria-label="Codex 企业级 Agent 平台运行时链路">
+  <div class="arch-lane lane-entry">
+    <span class="lane-label">入口层</span>
+    <div class="arch-node">Web</div>
+    <div class="arch-node">IDE</div>
+    <div class="arch-node">CLI</div>
+    <div class="arch-node">ChatOps</div>
+    <div class="arch-node">工单</div>
+  </div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-node gateway">Agent Gateway<br><small>认证 / 路由 / 限流 / 事件流</small></div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-stack">
+    <div class="arch-node server">Codex app-server<br><small>JSON-RPC / stdio / ws</small></div>
+    <div class="arch-node core">codex-core<br><small>Thread / Turn / Item / Tools</small></div>
+  </div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-lane lane-runtime">
+    <span class="lane-label">执行与扩展</span>
+    <div class="arch-node">Model Provider</div>
+    <div class="arch-node">MCP / Tools</div>
+    <div class="arch-node">Skills / Plugins</div>
+    <div class="arch-node">Hooks / Approval</div>
+  </div>
+  <div class="control-plane">
+    <span>治理控制面</span>
+    <b>RBAC</b><b>DLP</b><b>Audit</b><b>Cost</b><b>Rollback</b>
+  </div>
+</div>
+
+      </section>
+
+      <section aria-labelledby="compare-title">
+        <div class="section-title">
+          <h2 id="compare-title">方案定位对比</h2>
+          <p>Codex、OpenClaw、Claude 的选择应围绕企业平台落地维度判断。</p>
+        </div>
+        <div class="matrix">
+          <div class="matrix-row matrix-head"><div>维度</div><div>Codex 二次开发</div><div>OpenClaw</div><div>Claude</div></div>
+          <div class="matrix-row"><div class="matrix-label">定位</div><div>工程 Agent 执行层</div><div>开源 Agent 框架类方案</div><div>通用强推理模型/助手</div></div>
+          <div class="matrix-row"><div class="matrix-label">优势</div><div>代码编辑、测试、审查链路完整</div><div>源码可控，便于深度改造</div><div>长上下文分析和表达能力强</div></div>
+          <div class="matrix-row"><div class="matrix-label">开发量</div><div>中等：封装平台控制面</div><div>较高：治理能力多需自建</div><div>中高：执行闭环需自建</div></div>
+          <div class="matrix-row"><div class="matrix-label">安全落点</div><div>沙箱、审批、审计可平台化</div><div>透明但需安全硬化</div><div>依赖外围工具和策略</div></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="roadmap-title">
+        <div class="section-title">
+          <h2 id="roadmap-title">0-90 天实施路线</h2>
+          <p>先跑通可控闭环，再扩大入口、连接器、并发和评测体系。</p>
+        </div>
+        <div class="roadmap">
+          <article class="phase" style="--accent: var(--teal);"><b>0-15 天</b><h3>PoC</h3><p>选择 2-3 个研发场景，跑通仓库读取、补丁生成、测试和人工确认。</p></article>
+          <article class="phase" style="--accent: var(--copper);"><b>15-45 天</b><h3>平台核心</h3><p>建设 Gateway、任务状态机、会话存储、Worker 池和事件流。</p></article>
+          <article class="phase" style="--accent: var(--red);"><b>45-75 天</b><h3>治理上线</h3><p>接入 SSO、RBAC、审批、审计、密钥托管、DLP 和安全沙箱。</p></article>
+          <article class="phase" style="--accent: var(--blue);"><b>75-90 天</b><h3>规模化</h3><p>完善多租户配额、成本看板、评测体系、连接器市场和运营指标。</p></article>
+        </div>
+      </section>
+
+      <section class="doc-shell" id="full-guide">
+        <article class="guide-content">
+          <p>版本：2026-06-09 源码位置：<code>D:\dev\github\codex</code> 仓库：<code>https://github.com/openai/codex.git</code> 当前 HEAD：<code>0526cb56ac3501a02968010d03873993c319e290</code></p>
+<blockquote>说明：本指南基于本机克隆的 OpenAI 官方 <code>openai/codex</code> 源码、仓库内文档与 Python SDK 文档编写。官方 Codex 手册 <code>https://developers.openai.com/codex/codex-manual.md</code> 在本环境拉取时返回 HTTP 403，因此本文以当前源码为准，并对实验性/未稳定接口作保守标注。</blockquote>
+<h2 id="目录">目录</h2>
+<ol><li>Codex 源码架构与二次开发边界</li><li>企业级 Agent 平台接入架构</li><li>Python SDK 使用与平台封装示例</li><li>插件开发：manifest、marketplace、MCP 与应用入口</li><li>技能开发：SKILL.md、资源组织与触发机制</li><li>Hooks 与治理：审批、安全、审计和自动化拦截</li></ol>
+<hr>
+<h2 id="第-1-章-codex-源码架构与二次开发边界">第 1 章 Codex 源码架构与二次开发边界</h2>
+<h3 id="1.1-仓库结构">1.1 仓库结构</h3>
+<p>本仓库是 Codex CLI / App Server / SDK 的开源主体，主要目录如下：</p>
+<pre data-lang="text"><code class=" language-text">codex/
+  README.md
+  docs/                         # 安装、配置、sandbox、exec、skills 等公开文档入口
+  codex-cli/                    # npm 包装与分发脚本
+  codex-rs/                     # Rust 主体，包含 CLI、TUI、core、app-server、plugin、hooks
+  sdk/python/                   # openai-codex Python SDK
+  sdk/typescript/               # TypeScript SDK
+  sdk/python-runtime/           # Python SDK 依赖的 Codex runtime 包</code></pre>
+<p>关键源码位置：</p>
+<pre data-lang="text"><code class=" language-text">codex-rs/app-server/README.md
+codex-rs/app-server-protocol/src/protocol/
+codex-rs/core/src/
+codex-rs/config/src/hook_config.rs
+codex-rs/hooks/src/
+codex-rs/core-plugins/src/
+codex-rs/plugin/src/
+codex-rs/core-skills/src/
+codex-rs/skills/src/
+sdk/python/src/openai_codex/
+sdk/python/docs/</code></pre>
+<h3 id="1.2-运行时主链路">1.2 运行时主链路</h3>
+<p>Codex 的二次开发核心不建议直接改模型调用，而应围绕 <code>app-server</code>、SDK、插件、技能、hook、MCP 等扩展面做平台化封装。</p>
+
+<div class="architecture-visual" aria-label="Codex 企业级 Agent 平台运行时链路">
+  <div class="arch-lane lane-entry">
+    <span class="lane-label">入口层</span>
+    <div class="arch-node">Web</div>
+    <div class="arch-node">IDE</div>
+    <div class="arch-node">CLI</div>
+    <div class="arch-node">ChatOps</div>
+    <div class="arch-node">工单</div>
+  </div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-node gateway">Agent Gateway<br><small>认证 / 路由 / 限流 / 事件流</small></div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-stack">
+    <div class="arch-node server">Codex app-server<br><small>JSON-RPC / stdio / ws</small></div>
+    <div class="arch-node core">codex-core<br><small>Thread / Turn / Item / Tools</small></div>
+  </div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-lane lane-runtime">
+    <span class="lane-label">执行与扩展</span>
+    <div class="arch-node">Model Provider</div>
+    <div class="arch-node">MCP / Tools</div>
+    <div class="arch-node">Skills / Plugins</div>
+    <div class="arch-node">Hooks / Approval</div>
+  </div>
+  <div class="control-plane">
+    <span>治理控制面</span>
+    <b>RBAC</b><b>DLP</b><b>Audit</b><b>Cost</b><b>Rollback</b>
+  </div>
+</div>
+
+<h3 id="1.3-核心模块职责">1.3 核心模块职责</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>模块</th><th>职责</th><th>二次开发建议</th></tr></thead>
+<tbody>
+<tr><td><code>codex-rs/app-server</code></td><td>对外 JSON-RPC 服务，驱动富客户端</td><td>企业入口优先接这一层，避免直接耦合 TUI</td></tr>
+<tr><td><code>codex-rs/app-server-protocol</code></td><td>RPC 参数、响应、通知 schema</td><td>前后端 SDK、网关协议生成的依据</td></tr>
+<tr><td><code>codex-rs/core</code></td><td>agent 主循环、上下文、模型请求、工具调用、sandbox</td><td>不建议随意改；企业策略优先在外围拦截</td></tr>
+<tr><td><code>codex-rs/config</code></td><td>配置层、hook 配置、requirements</td><td>企业策略、托管配置、权限约束入口</td></tr>
+<tr><td><code>codex-rs/hooks</code></td><td>lifecycle hook discovery、执行、输出解析</td><td>安全拦截、审计、上下文注入的关键点</td></tr>
+<tr><td><code>codex-rs/core-plugins</code></td><td>marketplace、插件安装/读取/卸载</td><td>插件市场、团队插件分发入口</td></tr>
+<tr><td><code>codex-rs/core-skills</code></td><td>技能加载、渲染、注入、触发</td><td>领域工作流固化入口</td></tr>
+<tr><td><code>sdk/python</code></td><td>Python 封装，启动 app-server 并走 JSON-RPC</td><td>后端编排、批任务、多用户封装首选</td></tr>
+</tbody>
+</table></div>
+<h3 id="1.4-thread-turn-item">1.4 Thread / Turn / Item</h3>
+<p><code>codex app-server</code> 暴露三个基本原语：</p>
+<ul><li><code>Thread</code>：一段可持久化的 Codex 会话。</li><li><code>Turn</code>：用户发起的一轮任务，包含模型输出和工具调用。</li><li><code>Item</code>：turn 内的结构化内容，例如用户消息、agent 消息、shell 命令、文件变更、hook 提示等。</li></ul>
+<p>企业平台应保存 <code>threadId</code>、<code>turnId</code>、用户、租户、项目、审批记录、产物路径和 trace，而不是只保存最终文本。</p>
+<hr>
+<h2 id="第-2-章-企业级-agent-平台接入架构">第 2 章 企业级 Agent 平台接入架构</h2>
+<h3 id="2.1-推荐接入方式">2.1 推荐接入方式</h3>
+<p>企业平台可以直接接 <code>codex app-server</code>，也可以通过 Python SDK 间接接入：</p>
+<pre data-lang="text"><code class=" language-text">方案 A：自建网关直接接 app-server JSON-RPC
+  企业前端/后端 -&gt; app-server stdio/ws/unix socket -&gt; Codex runtime
+
+方案 B：企业后端使用 Python SDK
+  企业后端 -&gt; openai-codex SDK -&gt; app-server stdio -&gt; Codex runtime</code></pre>
+<p>如果需要快速落地，多数企业场景优先使用方案 B；如果要开发 IDE、桌面端、长连接事件 UI，方案 A 更灵活。</p>
+<h3 id="2.2-app-server-协议要点">2.2 app-server 协议要点</h3>
+<p>源码文档显示 <code>codex app-server</code> 支持：</p>
+<ul><li>JSON-RPC 2.0 风格消息，wire 上省略 <code>&quot;jsonrpc&quot;:&quot;2.0&quot;</code>。</li><li><code>stdio://</code>：默认，JSONL，一行一个消息。</li><li><code>ws://IP:PORT</code>：实验性/不支持生产依赖。</li><li><code>unix://</code>：本地控制面 socket。</li><li><code>GET /readyz</code> 与 <code>GET /healthz</code> 健康检查。</li><li>入口队列有背压，饱和时返回 JSON-RPC 错误 <code>-32001</code>，消息为 <code>Server overloaded; retry later.</code>。</li></ul>
+<p>初始化示例：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;method&quot;: &quot;initialize&quot;,
+  &quot;id&quot;: 1,
+  &quot;params&quot;: {
+    &quot;clientInfo&quot;: {
+      &quot;name&quot;: &quot;enterprise_agent_platform&quot;,
+      &quot;title&quot;: &quot;Enterprise Agent Platform&quot;,
+      &quot;version&quot;: &quot;0.1.0&quot;
+    },
+    &quot;capabilities&quot;: {
+      &quot;experimentalApi&quot;: true,
+      &quot;optOutNotificationMethods&quot;: []
+    }
+  }
+}</code></pre>
+<p>生产建议：</p>
+<ul><li>每个企业服务实例维护 app-server worker 池。</li><li>入口层对 <code>Server overloaded</code> 做指数退避与队列降级。</li><li>所有客户端必须带稳定 <code>clientInfo.name/title/version</code>。</li><li>企业用途需要考虑合规日志身份标识，不要把所有流量伪装成默认 SDK 客户端。</li></ul>
+<h3 id="2.3-线程和-turn-调用流程">2.3 线程和 turn 调用流程</h3>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;method&quot;: &quot;thread/start&quot;,
+  &quot;id&quot;: 10,
+  &quot;params&quot;: {
+    &quot;cwd&quot;: &quot;D:\\dev\\github\\my-project&quot;,
+    &quot;model&quot;: &quot;gpt-5.1-codex&quot;,
+    &quot;sandbox&quot;: &quot;workspaceWrite&quot;,
+    &quot;approvalPolicy&quot;: &quot;onRequest&quot;,
+    &quot;personality&quot;: &quot;pragmatic&quot;,
+    &quot;serviceName&quot;: &quot;enterprise_agent_platform&quot;
+  }
+}</code></pre>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;method&quot;: &quot;turn/start&quot;,
+  &quot;id&quot;: 11,
+  &quot;params&quot;: {
+    &quot;threadId&quot;: &quot;thr_123&quot;,
+    &quot;input&quot;: [
+      {
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;text&quot;: &quot;分析本仓库架构并提出二次开发建议。&quot;
+      }
+    ],
+    &quot;sandboxPolicy&quot;: {
+      &quot;type&quot;: &quot;readOnly&quot;
+    }
+  }
+}</code></pre>
+<p>调用后平台应持续读取通知：</p>
+<pre data-lang="text"><code class=" language-text">thread/started
+turn/started
+item/started
+item/agentMessage/delta
+item/completed
+thread/tokenUsage/updated
+hook/started
+hook/completed
+turn/completed</code></pre>
+<h3 id="2.4-企业平台控制面">2.4 企业平台控制面</h3>
+<p>建议平台自己维护这些表：</p>
+<pre data-lang="text"><code class=" language-text">tenant(id, name, policy)
+user(id, tenant_id, roles)
+project(id, tenant_id, repo_url, default_cwd, permissions_profile)
+agent_thread(id, codex_thread_id, project_id, user_id, status)
+agent_turn(id, codex_turn_id, thread_id, task_type, status, started_at, completed_at)
+approval(id, turn_id, action_type, payload_hash, approver, decision, reason)
+artifact(id, turn_id, type, path, checksum)
+audit_event(id, turn_id, event_type, payload, created_at)</code></pre>
+<p>这样可以把 Codex 的会话能力和企业自己的权限、审计、成本、SLA 分离。</p>
+<hr>
+<h2 id="第-3-章-python-sdk-使用与平台封装示例">第 3 章 Python SDK 使用与平台封装示例</h2>
+<h3 id="3.1-sdk-定位">3.1 SDK 定位</h3>
+<p><code>openai-codex</code> Python SDK 是 Codex 工作流 SDK。它会：</p>
+<ol><li>定位或使用配置中的 Codex binary。</li><li>启动 <code>codex app-server --listen stdio://</code>。</li><li>通过 typed JSON-RPC 调用 app-server。</li><li>提供同步 <code>Codex</code> 和异步 <code>AsyncCodex</code>。</li></ol>
+<p>安装：</p>
+<pre data-lang="bash"><code class=" language-bash">pip install openai-codex</code></pre>
+<p>开发仓库内调试：</p>
+<pre data-lang="bash"><code class=" language-bash">cd D:\dev\github\codex\sdk\python
+uv sync --extra dev</code></pre>
+<h3 id="3.2-基础调用">3.2 基础调用</h3>
+<pre data-lang="python"><code class=" language-python">from openai_codex import ApprovalMode, Codex, Sandbox
+
+with Codex() as codex:
+    thread = codex.thread_start(
+        cwd=r&quot;D:\dev\github\my-project&quot;,
+        sandbox=Sandbox.workspace_write,
+        approval_mode=ApprovalMode.auto_review,
+        model=&quot;gpt-5.1-codex&quot;,
+        developer_instructions=(
+            &quot;你是企业平台中的研发 Agent。输出必须包含变更摘要、风险和验证命令。&quot;
+        ),
+    )
+
+    result = thread.run(
+        &quot;阅读仓库并生成模块架构说明。&quot;,
+        sandbox=Sandbox.read_only,
+    )
+
+    print(result.status)
+    print(result.final_response)
+    print(result.usage)</code></pre>
+<p>公开枚举：</p>
+<pre data-lang="python"><code class=" language-python">ApprovalMode.auto_review  # on-request + auto reviewer
+ApprovalMode.deny_all     # never approve escalated permission requests
+
+Sandbox.read_only
+Sandbox.workspace_write
+Sandbox.full_access</code></pre>
+<p>企业默认建议：</p>
+<ul><li>代码阅读、问答：<code>Sandbox.read_only</code></li><li>代码修改：<code>Sandbox.workspace_write</code></li><li>生产系统、密钥、外部提交：不要默认 <code>full_access</code></li></ul>
+<h3 id="3.3-流式事件">3.3 流式事件</h3>
+<pre data-lang="python"><code class=" language-python">from openai_codex import Codex
+
+with Codex() as codex:
+    thread = codex.thread_start(cwd=r&quot;D:\dev\github\my-project&quot;)
+    turn = thread.turn(&quot;解释本次 diff 的风险。&quot;)
+
+    for event in turn.stream():
+        if event.method == &quot;item/agentMessage/delta&quot;:
+            print(event.payload.delta, end=&quot;&quot;, flush=True)
+        elif event.method == &quot;turn/completed&quot;:
+            print(&quot;\ncompleted:&quot;, event.payload.turn.status.value)</code></pre>
+<p>平台封装时，建议把 event 转成自己的 SSE/WebSocket 事件：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;taskId&quot;: &quot;task_001&quot;,
+  &quot;codexThreadId&quot;: &quot;thr_123&quot;,
+  &quot;codexTurnId&quot;: &quot;turn_456&quot;,
+  &quot;event&quot;: &quot;item/agentMessage/delta&quot;,
+  &quot;payload&quot;: {}
+}</code></pre>
+<h3 id="3.4-steering-与-interrupt">3.4 steering 与 interrupt</h3>
+<pre data-lang="python"><code class=" language-python">from openai_codex import Codex
+
+with Codex() as codex:
+    thread = codex.thread_start()
+    turn = thread.turn(&quot;列出 200 个测试点。&quot;)
+
+    # 用户中途介入，缩小输出范围
+    turn.steer(&quot;只保留最关键的 10 个。&quot;)
+
+    for event in turn.stream():
+        if event.method == &quot;turn/completed&quot;:
+            print(event.payload.turn.status.value)</code></pre>
+<p>取消执行：</p>
+<pre data-lang="python"><code class=" language-python">with Codex() as codex:
+    thread = codex.thread_start()
+    turn = thread.turn(&quot;执行一次较长分析。&quot;)
+    turn.interrupt()
+    result = turn.run()
+    print(result.status)</code></pre>
+<p>企业平台映射：</p>
+<div class="table-wrap"><table>
+<thead><tr><th>用户动作</th><th>SDK 方法</th><th>平台状态</th></tr></thead>
+<tbody>
+<tr><td>追加约束</td><td><code>turn.steer(...)</code></td><td><code>running -&gt; running</code></td></tr>
+<tr><td>停止任务</td><td><code>turn.interrupt()</code></td><td><code>running -&gt; canceling -&gt; interrupted</code></td></tr>
+<tr><td>继续会话</td><td><code>thread.run(...)</code></td><td>新 turn</td></tr>
+<tr><td>恢复历史</td><td><code>codex.thread_resume(thread_id)</code></td><td><code>loaded/resumed</code></td></tr>
+</tbody>
+</table></div>
+<h3 id="3.5-并发执行">3.5 并发执行</h3>
+<p>Python SDK 文档说明一个客户端可以按 turn ID 路由多个活跃 turn 的 stream。企业实现仍建议把并发边界放在平台调度层。</p>
+<pre data-lang="python"><code class=" language-python">import asyncio
+from openai_codex import AsyncCodex, Sandbox
+
+TASKS = [
+    (r&quot;D:\dev\github\service-a&quot;, &quot;生成架构摘要&quot;),
+    (r&quot;D:\dev\github\service-b&quot;, &quot;检查测试策略&quot;),
+    (r&quot;D:\dev\github\service-c&quot;, &quot;找出发布风险&quot;),
+]
+
+async def run_one(codex: AsyncCodex, cwd: str, prompt: str) -&gt; str:
+    thread = await codex.thread_start(cwd=cwd, sandbox=Sandbox.read_only)
+    result = await thread.run(prompt)
+    return result.final_response or &quot;&quot;
+
+async def main() -&gt; None:
+    async with AsyncCodex() as codex:
+        results = await asyncio.gather(
+            *(run_one(codex, cwd, prompt) for cwd, prompt in TASKS)
+        )
+        for item in results:
+            print(item[:300])
+
+asyncio.run(main())</code></pre>
+<p>生产建议：</p>
+<ul><li>单个 <code>AsyncCodex</code> 可承载多个 turn，但平台仍要限制租户并发。</li><li>每个任务绑定独立 <code>cwd</code> 和 sandbox。</li><li>对高成本任务设置超时和取消。</li><li>对 <code>ServerBusyError</code> 使用 <code>retry_on_overload</code> 或平台级退避。</li></ul>
+<h3 id="3.6-结构化输出">3.6 结构化输出</h3>
+<pre data-lang="python"><code class=" language-python">import json
+from openai_codex import Codex
+from openai_codex.types import Personality, ReasoningSummary
+
+OUTPUT_SCHEMA = {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+        &quot;summary&quot;: {&quot;type&quot;: &quot;string&quot;},
+        &quot;risks&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;}},
+        &quot;nextActions&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;}}
+    },
+    &quot;required&quot;: [&quot;summary&quot;, &quot;risks&quot;, &quot;nextActions&quot;],
+    &quot;additionalProperties&quot;: False,
+}
+
+with Codex() as codex:
+    thread = codex.thread_start()
+    result = thread.run(
+        &quot;评估把 Codex 接入企业 Agent 平台的上线风险。&quot;,
+        output_schema=OUTPUT_SCHEMA,
+        personality=Personality.pragmatic,
+        summary=ReasoningSummary.model_validate(&quot;concise&quot;),
+    )
+
+    payload = json.loads(result.final_response or &quot;{}&quot;)
+    print(payload[&quot;summary&quot;])</code></pre>
+<p>结构化输出适合任务摘要、风险列表、工单字段、审批 payload。</p>
+<h3 id="3.7-skillinput-与-mentioninput">3.7 SkillInput 与 MentionInput</h3>
+<pre data-lang="python"><code class=" language-python">from openai_codex import Codex, SkillInput, TextInput
+
+with Codex() as codex:
+    thread = codex.thread_start()
+    result = thread.run([
+        SkillInput(
+            name=&quot;enterprise-release-review&quot;,
+            path=r&quot;D:\dev\codex-skills\enterprise-release-review\SKILL.md&quot;,
+        ),
+        TextInput(&quot;使用该技能审查当前仓库发布风险。&quot;),
+    ])
+    print(result.final_response)</code></pre>
+<p>这适合企业平台在特定场景强制注入一个审核技能。</p>
+<hr>
+<h2 id="第-4-章-插件开发-manifest-marketplace-mcp-与应用入口">第 4 章 插件开发：manifest、marketplace、MCP 与应用入口</h2>
+<h3 id="4.1-插件是什么">4.1 插件是什么</h3>
+<p>插件是可安装的能力包，可包含：</p>
+<ul><li><code>skills/</code>：一组技能。</li><li><code>.mcp.json</code>：MCP server 配置。</li><li><code>.app.json</code>：应用/连接器声明。</li><li><code>assets/</code>：图标、截图、模板。</li><li><code>.codex-plugin/plugin.json</code>：插件 manifest。</li><li>marketplace entry：让 Codex UI 能发现、安装、展示插件。</li></ul>
+<p>源码中 <code>core-plugins</code> 负责 marketplace、安装、读取、远程 bundle；<code>plugin</code> crate 提供共享 ID、摘要和 hook source 类型。</p>
+<h3 id="4.2-推荐目录">4.2 推荐目录</h3>
+<pre data-lang="text"><code class=" language-text">enterprise-review-plugin/
+  .codex-plugin/
+    plugin.json
+  skills/
+    enterprise-release-review/
+      SKILL.md
+      references/
+        policy.md
+      scripts/
+        collect_ci_status.py
+  .mcp.json
+  .app.json
+  assets/
+    icon.png
+    logo.png</code></pre>
+<h3 id="4.3-plugin.json-示例">4.3 plugin.json 示例</h3>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;name&quot;: &quot;enterprise-review&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;description&quot;: &quot;Enterprise release review workflows for Codex.&quot;,
+  &quot;author&quot;: {
+    &quot;name&quot;: &quot;Platform Team&quot;,
+    &quot;email&quot;: &quot;platform@example.com&quot;,
+    &quot;url&quot;: &quot;https://example.com&quot;
+  },
+  &quot;homepage&quot;: &quot;https://example.com/codex/enterprise-review&quot;,
+  &quot;repository&quot;: &quot;https://github.com/example/enterprise-review&quot;,
+  &quot;license&quot;: &quot;Apache-2.0&quot;,
+  &quot;keywords&quot;: [&quot;release&quot;, &quot;review&quot;, &quot;security&quot;],
+  &quot;skills&quot;: &quot;./skills/&quot;,
+  &quot;mcpServers&quot;: &quot;./.mcp.json&quot;,
+  &quot;apps&quot;: &quot;./.app.json&quot;,
+  &quot;interface&quot;: {
+    &quot;displayName&quot;: &quot;Enterprise Review&quot;,
+    &quot;shortDescription&quot;: &quot;Release and security review workflows&quot;,
+    &quot;longDescription&quot;: &quot;Codex skills and MCP tools for enterprise release readiness checks.&quot;,
+    &quot;developerName&quot;: &quot;Platform Team&quot;,
+    &quot;category&quot;: &quot;Productivity&quot;,
+    &quot;capabilities&quot;: [&quot;Read&quot;, &quot;Write&quot;, &quot;Interactive&quot;],
+    &quot;websiteURL&quot;: &quot;https://example.com&quot;,
+    &quot;privacyPolicyURL&quot;: &quot;https://example.com/privacy&quot;,
+    &quot;termsOfServiceURL&quot;: &quot;https://example.com/terms&quot;,
+    &quot;defaultPrompt&quot;: [
+      &quot;Review this release for production risk.&quot;,
+      &quot;Check whether this PR satisfies release policy.&quot;,
+      &quot;Generate a rollout checklist.&quot;
+    ],
+    &quot;brandColor&quot;: &quot;#128982&quot;,
+    &quot;composerIcon&quot;: &quot;./assets/icon.png&quot;,
+    &quot;logo&quot;: &quot;./assets/logo.png&quot;
+  }
+}</code></pre>
+<p>注意事项：</p>
+<ul><li><code>name</code> 建议 kebab-case，与插件目录一致。</li><li><code>version</code> 使用 semver。</li><li>路径使用相对路径并以 <code>./</code> 开头。</li><li><code>defaultPrompt</code> 最多 3 条，每条不超过 128 字符。</li><li><code>mcpServers</code>、<code>apps</code> 只在文件真实存在时写入。</li><li>当前源码 <code>manifest.rs</code> 可解析 <code>hooks</code> 字段，但内置 <code>plugin-creator</code> scaffold 文档提示校验器会拒绝 unsupported manifest fields such as <code>hooks</code>。因此生产插件如需 bundled hooks，必须在目标 Codex 版本上用 <code>plugin/read</code> 与 <code>hooks/list</code> 验证；保守做法是先把 hooks 放在平台/项目配置层或托管 requirements 中。</li></ul>
+<h3 id="4.4-marketplace.json-示例">4.4 marketplace.json 示例</h3>
+<p>个人 marketplace 默认位置：</p>
+<pre data-lang="text"><code class=" language-text">~/.agents/plugins/marketplace.json</code></pre>
+<p>团队/仓库 marketplace：</p>
+<pre data-lang="text"><code class=" language-text">&lt;repo-root&gt;/.agents/plugins/marketplace.json</code></pre>
+<p>示例：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;name&quot;: &quot;enterprise-local&quot;,
+  &quot;interface&quot;: {
+    &quot;displayName&quot;: &quot;Enterprise Local Plugins&quot;
+  },
+  &quot;plugins&quot;: [
+    {
+      &quot;name&quot;: &quot;enterprise-review&quot;,
+      &quot;source&quot;: {
+        &quot;source&quot;: &quot;local&quot;,
+        &quot;path&quot;: &quot;./plugins/enterprise-review&quot;
+      },
+      &quot;policy&quot;: {
+        &quot;installation&quot;: &quot;AVAILABLE&quot;,
+        &quot;authentication&quot;: &quot;ON_INSTALL&quot;
+      },
+      &quot;category&quot;: &quot;Productivity&quot;
+    }
+  ]
+}</code></pre>
+<p>策略字段：</p>
+<div class="table-wrap"><table>
+<thead><tr><th>字段</th><th>可选值</th><th>建议</th></tr></thead>
+<tbody>
+<tr><td><code>policy.installation</code></td><td><code>NOT_AVAILABLE</code> / <code>AVAILABLE</code> / <code>INSTALLED_BY_DEFAULT</code></td><td>内部试点用 <code>AVAILABLE</code></td></tr>
+<tr><td><code>policy.authentication</code></td><td><code>ON_INSTALL</code> / <code>ON_USE</code></td><td>涉及外部系统授权时用 <code>ON_INSTALL</code></td></tr>
+<tr><td><code>category</code></td><td>字符串</td><td>保持团队内分类一致</td></tr>
+</tbody>
+</table></div>
+<h3 id="4.5-插件中的-mcp">4.5 插件中的 MCP</h3>
+<p><code>.mcp.json</code> 示例：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;release-risk&quot;: {
+      &quot;command&quot;: &quot;python&quot;,
+      &quot;args&quot;: [
+        &quot;${PLUGIN_ROOT}/scripts/release_risk_mcp.py&quot;
+      ],
+      &quot;env&quot;: {
+        &quot;RELEASE_API_BASE&quot;: &quot;https://release.example.com&quot;
+      }
+    }
+  }
+}</code></pre>
+<p>企业建议：</p>
+<ul><li>MCP server 不直接持有用户密钥；密钥由平台注入短期 token。</li><li>工具 schema 保持小而明确。</li><li>所有写操作设计幂等键。</li><li>对外部系统提交、发消息、建工单等动作交给审批流。</li></ul>
+<h3 id="4.6-插件开发流程">4.6 插件开发流程</h3>
+<pre data-lang="bash"><code class=" language-bash"># 使用内置 plugin-creator skill 的脚本时，默认会生成有效 scaffold
+python scripts/create_basic_plugin.py enterprise-review --with-skills --with-mcp --with-assets
+
+# 校验插件
+python scripts/validate_plugin.py &lt;plugin-path&gt;</code></pre>
+<p>企业平台可以把插件发布流程做成：</p>
+<ol><li>插件仓库 PR。</li><li>manifest 校验。</li><li>skills 校验。</li><li>MCP server smoke test。</li><li>安全扫描。</li><li>marketplace 更新。</li><li>Codex 新线程试用。</li></ol>
+<hr>
+<h2 id="第-5-章-技能开发-skill.md-资源组织与触发机制">第 5 章 技能开发：SKILL.md、资源组织与触发机制</h2>
+<h3 id="5.1-技能是什么">5.1 技能是什么</h3>
+<p>Skill 是 Codex 的领域工作流扩展，适合沉淀：</p>
+<ul><li>专门流程：发布审核、故障复盘、数据库变更审查。</li><li>工具说明：如何调用内部 API、如何解析专有文件。</li><li>企业知识：规范、schema、合规要求。</li><li>可复用资源：脚本、模板、参考文档、图片资产。</li></ul>
+<p>源码显示系统技能会内嵌在二进制中，并安装到：</p>
+<pre data-lang="text"><code class=" language-text">CODEX_HOME/skills/.system</code></pre>
+<p>用户/团队技能通常放在：</p>
+<pre data-lang="text"><code class=" language-text">CODEX_HOME/skills/&lt;skill-name&gt;</code></pre>
+<p>app-server 还提供：</p>
+<pre data-lang="text"><code class=" language-text">skills/list
+skills/extraRoots/set
+skills/config/write
+skills/changed</code></pre>
+<h3 id="5.2-技能目录规范">5.2 技能目录规范</h3>
+<pre data-lang="text"><code class=" language-text">enterprise-release-review/
+  SKILL.md                    # 必需
+  agents/
+    openai.yaml               # 推荐，UI 元数据
+  scripts/
+    collect_ci_status.py
+  references/
+    release_policy.md
+    security_checklist.md
+  assets/
+    rollout-template.md</code></pre>
+<p><code>SKILL.md</code> 必须包含 YAML frontmatter：</p>
+<pre data-lang="markdown"><code class=" language-markdown">---
+name: enterprise-release-review
+description: Review enterprise software releases for production readiness, security risk, rollback plan quality, CI evidence, and approval completeness. Use when Codex is asked to evaluate a release, PR, deployment plan, hotfix, rollback, or production change.
+---
+
+# Enterprise Release Review
+
+## Workflow
+
+1. Read the release request and identify target services.
+2. Check CI status using `scripts/collect_ci_status.py` when a build id is available.
+3. Read `references/release_policy.md` before judging production readiness.
+4. Produce a concise decision: approve, approve with conditions, or block.
+
+## Output
+
+Return:
+
+- decision
+- blocking risks
+- missing evidence
+- rollback readiness
+- required approvals</code></pre>
+<h3 id="5.3-触发机制">5.3 触发机制</h3>
+<p>技能加载采用 progressive disclosure：</p>
+<ol><li><code>name + description</code> 常驻上下文。</li><li>触发后才加载 <code>SKILL.md</code> 正文。</li><li><code>references/</code>、<code>scripts/</code>、<code>assets/</code> 由 Codex 按需读取或执行。</li></ol>
+<p>触发方式：</p>
+<pre data-lang="text"><code class=" language-text">隐式：用户请求匹配 description
+显式：用户写 $enterprise-release-review
+SDK：SkillInput(name=..., path=...)
+插件：plugin manifest 暴露 skills 路径</code></pre>
+<h3 id="5.4-references-与-scripts-设计">5.4 references 与 scripts 设计</h3>
+<p><code>references/release_policy.md</code>：</p>
+<pre data-lang="markdown"><code class=" language-markdown"># Release Policy
+
+## Mandatory Evidence
+
+- Passing CI run for target commit.
+- Owner approval.
+- Rollback plan.
+- Security review for auth, payments, user data, permissions, or logging changes.
+
+## Block Conditions
+
+- Production secret exposed.
+- Database migration lacks rollback.
+- Test failures are ignored without owner signoff.</code></pre>
+<p><code>scripts/collect_ci_status.py</code>：</p>
+<pre data-lang="python"><code class=" language-python">import json
+import sys
+
+def main() -&gt; None:
+    build_id = sys.argv[1]
+    # Replace with internal CI API call.
+    print(json.dumps({
+        &quot;buildId&quot;: build_id,
+        &quot;status&quot;: &quot;passed&quot;,
+        &quot;url&quot;: f&quot;https://ci.example.com/builds/{build_id}&quot;,
+    }))
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
+<p>设计原则：</p>
+<ul><li>易错、重复、确定性的操作放脚本。</li><li>长文档放 references，不要塞进 <code>SKILL.md</code>。</li><li><code>SKILL.md</code> 控制在 500 行以内。</li><li>references 一层引用即可，不要多级追文档。</li><li>scripts 必须可以单独运行并有错误输出。</li></ul>
+<h3 id="5.5-通过-app-server-管理技能">5.5 通过 app-server 管理技能</h3>
+<p>列出技能：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;method&quot;: &quot;skills/list&quot;,
+  &quot;id&quot;: 20,
+  &quot;params&quot;: {
+    &quot;cwds&quot;: [&quot;D:\\dev\\github\\my-project&quot;],
+    &quot;forceReload&quot;: true
+  }
+}</code></pre>
+<p>临时增加技能根：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;method&quot;: &quot;skills/extraRoots/set&quot;,
+  &quot;id&quot;: 21,
+  &quot;params&quot;: {
+    &quot;extraRoots&quot;: [&quot;D:\\dev\\codex-skills&quot;]
+  }
+}</code></pre>
+<p>平台建议：</p>
+<ul><li>把团队技能仓库 checkout 到只读路径。</li><li>使用 <code>skills/extraRoots/set</code> 注入平台技能。</li><li>用户级技能、项目级技能、系统技能分开管理。</li><li>对技能更新做版本号和变更审查。</li></ul>
+<hr>
+<h2 id="第-6-章-hooks-与治理-审批-安全-审计和自动化拦截">第 6 章 Hooks 与治理：审批、安全、审计和自动化拦截</h2>
+<h3 id="6.1-hook-适用场景">6.1 Hook 适用场景</h3>
+<p>Hook 是生命周期拦截点，适合做：</p>
+<ul><li>危险工具调用拦截。</li><li>用户 prompt 策略检查。</li><li>权限请求自动 allow/deny。</li><li>工具调用后结果审计。</li><li>会话启动时注入上下文。</li><li>压缩前后保存审计摘要。</li></ul>
+<p>源码中 hook 事件包括：</p>
+<pre data-lang="text"><code class=" language-text">PreToolUse
+PermissionRequest
+PostToolUse
+PreCompact
+PostCompact
+SessionStart
+UserPromptSubmit
+SubagentStart
+SubagentStop
+Stop</code></pre>
+<p>handler 类型定义包含：</p>
+<pre data-lang="text"><code class=" language-text">command
+prompt
+agent</code></pre>
+<p>但当前 discovery 代码会跳过 <code>prompt</code> 和 <code>agent</code> hook，并提示 “not supported yet”；生产可用路径应以 <code>command</code> hook 为主。</p>
+<h3 id="6.2-hook-配置文件">6.2 Hook 配置文件</h3>
+<p>JSON 形态，通常为 <code>.codex/hooks.json</code>：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;^Bash$&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;python .codex/hooks/pre_tool_use.py&quot;,
+            &quot;commandWindows&quot;: &quot;python .codex\\hooks\\pre_tool_use.py&quot;,
+            &quot;timeout&quot;: 10,
+            &quot;statusMessage&quot;: &quot;checking command policy&quot;
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p>TOML 形态，可写在 <code>config.toml</code> 对应层：</p>
+<pre data-lang="toml"><code class=" language-toml">[[PreToolUse]]
+matcher = &quot;^Bash$&quot;
+
+[[PreToolUse.hooks]]
+type = &quot;command&quot;
+command = &quot;python .codex/hooks/pre_tool_use.py&quot;
+commandWindows = &quot;python .codex\\hooks\\pre_tool_use.py&quot;
+timeout = 10
+statusMessage = &quot;checking command policy&quot;</code></pre>
+<p>matcher 规则：</p>
+<ul><li>省略、空字符串或 <code>*</code>：匹配全部。</li><li><code>Bash</code>：精确匹配。</li><li><code>Edit|Write</code>：多候选精确匹配。</li><li><code>^Bash$</code>、<code>mcp__memory__.*</code>：正则匹配。</li><li><code>UserPromptSubmit</code> 和 <code>Stop</code> 事件目前忽略 matcher。</li></ul>
+<h3 id="6.3-command-hook-输入输出">6.3 Command hook 输入输出</h3>
+<p>命令 hook 的执行方式：</p>
+<ul><li>Codex 通过 shell 执行 <code>command</code>。</li><li>当前工作目录为 hook 触发时的 <code>cwd</code>。</li><li>输入 JSON 写入 hook 进程 stdin。</li><li>stdout 需要输出 JSON，Codex 按事件 schema 解析。</li><li>stderr 可用于诊断。</li><li>默认超时 600 秒，最小 1 秒。</li></ul>
+<p>通用输出字段：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;continue&quot;: true,
+  &quot;stopReason&quot;: &quot;optional reason&quot;,
+  &quot;suppressOutput&quot;: false,
+  &quot;systemMessage&quot;: &quot;optional system-level message&quot;
+}</code></pre>
+<p>常用 hook-specific 输出：</p>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;hookSpecificOutput&quot;: {
+    &quot;hookEventName&quot;: &quot;PreToolUse&quot;,
+    &quot;permissionDecision&quot;: &quot;deny&quot;,
+    &quot;permissionDecisionReason&quot;: &quot;Do not run production delete command.&quot;
+  }
+}</code></pre>
+<h3 id="6.4-pretooluse-示例-阻断危险-bash">6.4 PreToolUse 示例：阻断危险 Bash</h3>
+<p><code>.codex/hooks/pre_tool_use.py</code>：</p>
+<pre data-lang="python"><code class=" language-python">import json
+import re
+import sys
+
+payload = json.load(sys.stdin)
+tool_name = payload.get(&quot;tool_name&quot;)
+tool_input = payload.get(&quot;tool_input&quot;) or {}
+command = &quot; &quot;.join(tool_input.get(&quot;cmd&quot;) or tool_input.get(&quot;command&quot;) or [])
+
+danger = bool(re.search(r&quot;\b(rm\s+-rf|kubectl\s+delete|terraform\s+destroy)\b&quot;, command))
+
+if tool_name == &quot;Bash&quot; and danger:
+    print(json.dumps({
+        &quot;continue&quot;: True,
+        &quot;hookSpecificOutput&quot;: {
+            &quot;hookEventName&quot;: &quot;PreToolUse&quot;,
+            &quot;permissionDecision&quot;: &quot;deny&quot;,
+            &quot;permissionDecisionReason&quot;: &quot;Blocked by enterprise command policy.&quot;
+        }
+    }))
+else:
+    print(json.dumps({
+        &quot;continue&quot;: True,
+        &quot;hookSpecificOutput&quot;: {
+            &quot;hookEventName&quot;: &quot;PreToolUse&quot;,
+            &quot;permissionDecision&quot;: &quot;allow&quot;
+        }
+    }))</code></pre>
+<p>配置：</p>
+<pre data-lang="toml"><code class=" language-toml">[[PreToolUse]]
+matcher = &quot;^Bash$&quot;
+
+[[PreToolUse.hooks]]
+type = &quot;command&quot;
+command = &quot;python .codex/hooks/pre_tool_use.py&quot;
+commandWindows = &quot;python .codex\\hooks\\pre_tool_use.py&quot;
+timeout = 5
+statusMessage = &quot;checking Bash command&quot;</code></pre>
+<h3 id="6.5-permissionrequest-示例-按平台策略拒绝">6.5 PermissionRequest 示例：按平台策略拒绝</h3>
+<pre data-lang="python"><code class=" language-python">import json
+import sys
+
+payload = json.load(sys.stdin)
+tool_name = payload.get(&quot;tool_name&quot;)
+tool_input = payload.get(&quot;tool_input&quot;) or {}
+
+deny = tool_name == &quot;Bash&quot; and &quot;prod&quot; in json.dumps(tool_input).lower()
+
+print(json.dumps({
+    &quot;continue&quot;: True,
+    &quot;hookSpecificOutput&quot;: {
+        &quot;hookEventName&quot;: &quot;PermissionRequest&quot;,
+        &quot;decision&quot;: {
+            &quot;behavior&quot;: &quot;deny&quot; if deny else &quot;allow&quot;,
+            &quot;message&quot;: &quot;Production access requires manual change ticket.&quot; if deny else None
+        }
+    }
+}))</code></pre>
+<p>配置：</p>
+<pre data-lang="toml"><code class=" language-toml">[[PermissionRequest]]
+matcher = &quot;^Bash$&quot;
+
+[[PermissionRequest.hooks]]
+type = &quot;command&quot;
+command = &quot;python .codex/hooks/permission_request.py&quot;
+timeout = 5</code></pre>
+<h3 id="6.6-posttooluse-示例-向上下文追加审计提示">6.6 PostToolUse 示例：向上下文追加审计提示</h3>
+<pre data-lang="python"><code class=" language-python">import json
+import sys
+
+payload = json.load(sys.stdin)
+
+print(json.dumps({
+    &quot;continue&quot;: True,
+    &quot;hookSpecificOutput&quot;: {
+        &quot;hookEventName&quot;: &quot;PostToolUse&quot;,
+        &quot;additionalContext&quot;: (
+            &quot;Enterprise audit note: include command purpose, result, &quot;
+            &quot;and whether follow-up verification is required.&quot;
+        )
+    }
+}))</code></pre>
+<p>配置：</p>
+<pre data-lang="toml"><code class=" language-toml">[[PostToolUse]]
+matcher = &quot;^Bash$&quot;
+
+[[PostToolUse.hooks]]
+type = &quot;command&quot;
+command = &quot;python .codex/hooks/post_tool_use.py&quot;
+timeout = 5</code></pre>
+<h3 id="6.7-管理层配置与锁定">6.7 管理层配置与锁定</h3>
+<p>仓库文档显示 <code>requirements.toml</code> 支持：</p>
+<pre data-lang="toml"><code class=" language-toml">allow_managed_hooks_only = true</code></pre>
+<p>该配置只在 <code>requirements.toml</code> 支持，用于忽略用户、项目、会话 hook 配置，但仍允许 managed hooks。</p>
+<p>企业建议：</p>
+<ul><li>普通用户 hook 默认需要 trust。</li><li>企业强制 hook 放入 managed requirements。</li><li>对敏感项目启用 <code>allow_managed_hooks_only = true</code>。</li><li>hook 脚本放只读目录，并纳入版本审计。</li><li><code>hooks/list</code> 作为平台启动检查，确认 hook 是否启用、trusted、hash 是否变化。</li></ul>
+<h3 id="6.8-hooks-list-校验">6.8 hooks/list 校验</h3>
+<pre data-lang="json"><code class=" language-json">{
+  &quot;method&quot;: &quot;hooks/list&quot;,
+  &quot;id&quot;: 30,
+  &quot;params&quot;: {
+    &quot;cwds&quot;: [&quot;D:\\dev\\github\\my-project&quot;]
+  }
+}</code></pre>
+<p>返回的 <code>HookMetadata</code> 包含：</p>
+<pre data-lang="text"><code class=" language-text">key
+eventName
+handlerType
+matcher
+command
+timeoutSec
+statusMessage
+sourcePath
+source
+pluginId
+displayOrder
+enabled
+isManaged
+currentHash
+trustStatus</code></pre>
+<p>平台可在任务启动前检查：</p>
+<ul><li>必需 hook 是否存在。</li><li>hook 是否 enabled。</li><li>trustStatus 是否为 managed 或 trusted。</li><li>currentHash 是否在企业允许列表。</li></ul>
+<hr>
+<h2 id="落地建议">落地建议</h2>
+<h3 id="推荐-0-90-天路线">推荐 0-90 天路线</h3>
+<ol><li>第 0-2 周：确定 3 个高价值场景，例如代码审查、发布检查、故障复盘。</li><li>第 3-6 周：用 Python SDK 封装 task/thread/turn/event，接入企业认证与审计。</li><li>第 7-10 周：沉淀团队 skills 和只读 MCP 工具，接入 Git/CI/工单。</li><li>第 11-13 周：上线 hooks、审批、并发调度、成本指标和安全基线。</li></ol>
+<h3 id="推荐最小可行架构">推荐最小可行架构</h3>
+<pre data-lang="text"><code class=" language-text">Enterprise API
+  -&gt; Task Orchestrator
+  -&gt; Worker Pool
+  -&gt; openai-codex Python SDK
+  -&gt; Codex app-server stdio
+  -&gt; Codex core runtime
+
+Control Plane
+  -&gt; SSO / tenant / project / policy
+  -&gt; approval service
+  -&gt; artifact store
+  -&gt; audit log
+  -&gt; metrics and cost dashboard</code></pre>
+<h3 id="不建议的做法">不建议的做法</h3>
+<ul><li>不要让 Web 用户直接连本地 app-server。</li><li>不要把生产密钥写进 prompt 或 skill。</li><li>不要默认 <code>Sandbox.full_access</code>。</li><li>不要让插件直接越权调用生产系统。</li><li>不要把 hook 当成唯一安全边界；hook 应和 RBAC、sandbox、MCP 工具权限、审批一起使用。</li><li>不要直接修改 <code>codex-core</code> 来做企业策略，除非已有清晰的上游贡献计划。</li></ul>
+<h3 id="源码依据索引">源码依据索引</h3>
+<pre data-lang="text"><code class=" language-text">README.md
+docs/config.md
+docs/skills.md
+codex-rs/Cargo.toml
+codex-rs/app-server/README.md
+codex-rs/app-server-protocol/src/protocol/common.rs
+codex-rs/app-server-protocol/src/protocol/v2/thread.rs
+codex-rs/app-server-protocol/src/protocol/v2/turn.rs
+codex-rs/app-server-protocol/src/protocol/v2/plugin.rs
+codex-rs/app-server-protocol/src/protocol/v2/hook.rs
+codex-rs/config/src/hook_config.rs
+codex-rs/config/src/hooks_tests.rs
+codex-rs/hooks/src/lib.rs
+codex-rs/hooks/src/engine/discovery.rs
+codex-rs/hooks/src/engine/command_runner.rs
+codex-rs/hooks/src/engine/output_parser.rs
+codex-rs/core-plugins/src/manifest.rs
+codex-rs/plugin/src/lib.rs
+codex-rs/core-skills/src/lib.rs
+codex-rs/skills/src/lib.rs
+sdk/python/README.md
+sdk/python/docs/getting-started.md
+sdk/python/docs/api-reference.md
+sdk/python/src/openai_codex/client.py
+sdk/python/src/openai_codex/api.py
+sdk/python/src/openai_codex/_inputs.py
+sdk/python/src/openai_codex/_sandbox.py
+sdk/python/src/openai_codex/_approval_mode.py</code></pre>
+        </article>
+        <aside class="insight-rail" aria-label="实施提示">
+          <div class="rail-card" style="--accent: var(--teal);">
+            <h3>优先接入</h3>
+            <p>快速落地优先使用 Python SDK；需要长连接 UI 或多端协议时再直接封装 app-server。</p>
+          </div>
+          <div class="rail-card" style="--accent: var(--red);">
+            <h3>风险控制</h3>
+            <ul>
+              <li>生产写操作强制审批</li>
+              <li>密钥托管不进 prompt</li>
+              <li>所有工具调用记录 trace</li>
+            </ul>
+          </div>
+          <div class="rail-card" style="--accent: var(--blue);">
+            <h3>验收指标</h3>
+            <p>关注任务成功率、一次通过率、人工接管率、P95 完成时间、token 成本和安全拦截率。</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <script>
+const progress = document.querySelector('.progress span');
+const tocLinks = [...document.querySelectorAll('.toc-link')];
+const headings = [...document.querySelectorAll('main h2[id], main h3[id]')];
+const search = document.querySelector('.search');
+const tocCount = document.querySelector('.toc-count');
+
+function updateProgress() {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  progress.style.width = height > 0 ? `${(scrollTop / height) * 100}%` : '0%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+const observer = new IntersectionObserver((entries) => {
+  const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+  if (!visible) return;
+  tocLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${visible.target.id}`));
+}, { rootMargin: '-18% 0px -74% 0px', threshold: [0, 1] });
+headings.forEach((heading) => observer.observe(heading));
+
+document.querySelectorAll('pre').forEach((pre) => {
+  const button = document.createElement('button');
+  button.className = 'copy-code';
+  button.type = 'button';
+  button.textContent = '复制';
+  button.addEventListener('click', async () => {
+    const text = pre.querySelector('code')?.innerText || '';
+    await navigator.clipboard.writeText(text);
+    button.textContent = '已复制';
+    setTimeout(() => { button.textContent = '复制'; }, 1100);
+  });
+  pre.appendChild(button);
+});
+
+search.addEventListener('input', () => {
+  const q = search.value.trim().toLowerCase();
+  let visible = 0;
+  tocLinks.forEach((link) => {
+    const ok = !q || link.textContent.toLowerCase().includes(q);
+    link.style.display = ok ? '' : 'none';
+    if (ok) visible += 1;
+  });
+  tocCount.textContent = q ? `匹配 ${visible} 项` : `${tocLinks.length} 个导航项`;
+});
+tocCount.textContent = `${tocLinks.length} 个导航项`;
+</script>
+</body>
+</html>
